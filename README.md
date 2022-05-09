@@ -9,3 +9,5 @@
 - (MD) A2335F2875 - Muhammad Rafi Triandi - Yarsi University
 - (CC) C7335F2870 - Achmad Dino Saputra  - Yarsi University
 - (CC) C7335F2871 - Aldin Mubarok Guferol  - Yarsi University
+
+- First commit progress (week 1)
