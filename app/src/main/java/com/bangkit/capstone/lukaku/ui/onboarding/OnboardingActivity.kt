@@ -56,7 +56,7 @@ class OnboardingActivity : AppCompatActivity() {
                 slideUp.interpolator = AnticipateInterpolator()
                 slideUp.duration = 200L
 
-                // Call SplashScreenView.remove at the end of your custom animation.
+                // Call SplashScreenView.remove at the end of the custom animation.
                 slideUp.doOnEnd { splashScreenView.remove() }
 
                 // Run animation.
