@@ -9,7 +9,7 @@ import java.util.*
 class OnboardingViewModel : ViewModel() {
     fun isReady(): Boolean {
         val result = viewModelScope.runCatching {
-            val randomDelays = mutableListOf<Long>(1000, 2000, 3000)
+            val randomDelays = mutableListOf<Long>(500, 1000, 1500, 2000, 2500, 3000)
             val randomIndex = Random().nextInt(randomDelays.size)
             val randomTimeMillis = randomDelays[randomIndex]
             runBlocking {
