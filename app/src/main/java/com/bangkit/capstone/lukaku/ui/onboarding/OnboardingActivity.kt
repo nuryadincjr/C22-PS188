@@ -1,10 +1,14 @@
 package com.bangkit.capstone.lukaku.ui.onboarding
 
+import android.animation.ObjectAnimator
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.animation.AnticipateInterpolator
 import androidx.activity.viewModels
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.bangkit.capstone.lukaku.R
 
@@ -17,6 +21,7 @@ class OnboardingActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(R.layout.activity_onboarding)
         setupPreDrawListener()
+        exitWithSlideUp()
     }
 
     private fun setupPreDrawListener() {
@@ -36,5 +41,27 @@ class OnboardingActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun exitWithSlideUp() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            splashScreen.setOnExitAnimationListener { splashScreenView ->
+                // Create custom animation.
+                val slideUp = ObjectAnimator.ofFloat(
+                    splashScreenView,
+                    View.TRANSLATION_Y,
+                    0f,
+                    -splashScreenView.height.toFloat()
+                )
+                slideUp.interpolator = AnticipateInterpolator()
+                slideUp.duration = 200L
+
+                // Call SplashScreenView.remove at the end of your custom animation.
+                slideUp.doOnEnd { splashScreenView.remove() }
+
+                // Run animation.
+                slideUp.start()
+            }
+        }
     }
 }
