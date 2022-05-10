@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LukaKu</string>
+
+    <string name="title_menu_1">Mulai deteksi</string>
+    <string name="title_menu_2">Pertolongan pertama</string>
+    <string name="title_menu_3">Rekomendasi obat</string>
+    <string name="desc_menu_1">Ambil snapshot atau foto dengan kamera, atau unggah sebuah gambar dari galeri ponsel kamu.</string>
+    <string name="desc_menu_2">Akses informsi cepat untuk cara pertolongan pertama yang dapat kamu lakukan.</string>
+    <string name="desc_menu_3">Dapatkan akses penyembuhan dengan rekomendasi obat yang siap pesan.</string>
+    <string name="join_now">Join Now</string>
+    <string name="skip">SKIP</string>
+    <string name="next">NEXT</string>
+    <string name="prev">PREV</string>
+
 </resources>
