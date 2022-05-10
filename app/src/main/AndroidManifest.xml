@@ -10,17 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LukaKu">
         <activity
-            android:name=".OnBoardingActivity"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.onboarding.OnBoardingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
