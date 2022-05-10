@@ -4,12 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import java.util.*
 
 class OnboardingViewModel : ViewModel() {
     fun isReady(): Boolean {
         val result = viewModelScope.runCatching {
+            val randomDelays = mutableListOf<Long>(1000, 2000, 3000)
+            val randomIndex = Random().nextInt(randomDelays.size)
+            val randomTimeMillis = randomDelays[randomIndex]
             runBlocking {
-                delay(3000)
+                delay(randomTimeMillis)
             }
             true
         }
