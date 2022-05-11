@@ -1,1 +1,1 @@
-# Mechine LEarning Path
+# Machine Learning Path
