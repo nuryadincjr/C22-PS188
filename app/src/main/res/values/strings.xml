@@ -17,5 +17,8 @@
     <string name="title_detection">Detection</string>
     <string name="title_profile">Profile</string>
     <string name="title_hospital">Hospital</string>
+    <string name="settings_menu">Settings</string>
+    <string name="image_profile">Image Profile</string>
+    <string name="history">History</string>
 
 </resources>
