@@ -1,4 +1,4 @@
-package com.bangkit.capstone.lukaku.ui.onboarding
+package com.bangkit.capstone.lukaku.ui.container
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.util.*
 
-class OnBoardingViewModel : ViewModel() {
+class SplashScreenViewModel : ViewModel() {
     fun isReady(): Boolean {
         val result = viewModelScope.runCatching {
             val randomDelays = mutableListOf<Long>(500, 1000, 1500, 2000, 2500, 3000)

@@ -11,5 +11,11 @@
     <string name="skip">SKIP</string>
     <string name="next">NEXT</string>
     <string name="prev">PREV</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_detection">Detection</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_hospital">Hospital</string>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     app:layoutDescription="@xml/activity_on_boarding_scene"
-    tools:context=".ui.onboarding.OnBoardingActivity">
+    tools:context=".ui.onboarding.OnborardingFragment">
 
     <ImageView
         android:id="@+id/logoMenu1"
