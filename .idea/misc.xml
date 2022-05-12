@@ -6,6 +6,7 @@
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_detection.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_detection_illustration.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_info.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_profile.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_container.xml" value="0.2" />
@@ -14,7 +15,8 @@
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_hospital.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_onborarding.xml" value="0.1" />
-        <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.16" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/item_list_history.xml" value="0.33" />
         <entry key="..\:/C22-PS188/app/src/main/res/menu/button_nav_menu.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/menu/menu.xml" value="0.2" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/activity_on_boarding.xml" value="0.264" />

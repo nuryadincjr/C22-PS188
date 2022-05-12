@@ -20,5 +20,9 @@
     <string name="settings_menu">Settings</string>
     <string name="image_profile">Image Profile</string>
     <string name="history">History</string>
+    <string name="date">Date</string>
+    <string name="wound_type">Wound Type</string>
+    <string name="wound_status">Wound Status</string>
+    <string name="detection_result_photo">Photo Hasil Deteksi</string>
 
 </resources>
