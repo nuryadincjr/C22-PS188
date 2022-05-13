@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -53,4 +55,12 @@ dependencies {
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'androidx.activity:activity-ktx:1.4.0'
+
+    // DataStore
+    implementation 'androidx.datastore:datastore-core:1.0.0'
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+
+    // Dagger Hilt
+    implementation 'com.google.dagger:hilt-android:2.41'
+    kapt 'com.google.dagger:hilt-compiler:2.41'
 }

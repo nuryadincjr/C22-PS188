@@ -3,7 +3,8 @@
     android:width="300dp"
     android:height="214dp"
     android:viewportWidth="300"
-    android:viewportHeight="214">
+    android:viewportHeight="214"
+    tools:ignore="VectorRaster">
     <group>
         <clip-path android:pathData="M57.726,1h183.669v212h-183.669z" />
         <path
