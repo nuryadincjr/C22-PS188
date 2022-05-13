@@ -1,58 +1,26 @@
-package com.bangkit.capstone.lukaku.ui.onboarding
+package com.bangkit.capstone.lukaku.ui.container
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.bangkit.capstone.lukaku.MainActivity
 import com.bangkit.capstone.lukaku.R
-import com.bangkit.capstone.lukaku.databinding.ActivityOnBoardingBinding
 
-class OnBoardingActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityOnBoardingBinding
-    private val onBoardingViewModel: OnBoardingViewModel by viewModels()
+class ContainerActivity : AppCompatActivity() {
+    private val viewModel: ContainerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_on_boarding)
-
-        binding = ActivityOnBoardingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setupView()
+        installSplashScreen()
+        setContentView(R.layout.activity_container)
         setupPreDrawListener()
         exitWithSlideUp()
-        startAction()
-    }
-
-    private fun startAction() {
-        binding.btnJoin.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     private fun setupPreDrawListener() {
@@ -61,7 +29,7 @@ class OnBoardingActivity : AppCompatActivity() {
             object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     // Check if the initial data is ready.
-                    return if (onBoardingViewModel.isReady()) {
+                    return if (viewModel.isReady()) {
                         // The content is ready; start drawing.
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true

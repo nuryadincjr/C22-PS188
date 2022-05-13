@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_onboarding_scene"
+    tools:context=".ui.onboarding.OnboardingFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_skip"
+        style="@style/TextOnClick"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="8dp"
+        android:text="@string/skip"
+        android:visibility="visible"
+        app:drawableEndCompat="@drawable/ic_skip_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logoMenu1"
+        style="@style/LogoMenu"
+        android:contentDescription="@string/title_menu_1"
+        android:src="@drawable/ic_detection"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_skip" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleMenu1"
+        style="@style/TextTitle"
+        android:text="@string/title_menu_1"
+        app:layout_constraintEnd_toEndOf="@+id/logoMenu1"
+        app:layout_constraintStart_toStartOf="@+id/logoMenu1"
+        app:layout_constraintTop_toBottomOf="@+id/logoMenu1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descMenu1"
+        style="@style/TextDescription"
+        android:text="@string/desc_menu_1"
+        app:layout_constraintEnd_toEndOf="@+id/titleMenu1"
+        app:layout_constraintStart_toStartOf="@+id/titleMenu1"
+        app:layout_constraintTop_toBottomOf="@+id/titleMenu1" />
+
+    <ImageView
+        android:id="@+id/logoMenu2"
+        style="@style/LogoMenu"
+        android:contentDescription="@string/title_menu_2"
+        android:src="@drawable/ic_health"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_skip" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleMenu2"
+        style="@style/TextTitle"
+        android:text="@string/title_menu_2"
+        app:layout_constraintEnd_toEndOf="@+id/logoMenu2"
+        app:layout_constraintStart_toStartOf="@+id/logoMenu2"
+        app:layout_constraintTop_toBottomOf="@+id/logoMenu2" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descMenu2"
+        style="@style/TextDescription"
+        android:text="@string/desc_menu_2"
+        app:layout_constraintEnd_toEndOf="@+id/titleMenu2"
+        app:layout_constraintStart_toStartOf="@+id/titleMenu2"
+        app:layout_constraintTop_toBottomOf="@+id/titleMenu2" />
+
+    <ImageView
+        android:id="@+id/logoMenu3"
+        style="@style/LogoMenu"
+        android:contentDescription="@string/title_menu_3"
+        android:src="@drawable/ic_drug"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_skip" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleMenu3"
+        style="@style/TextTitle"
+        android:text="@string/title_menu_3"
+        app:layout_constraintEnd_toEndOf="@+id/logoMenu3"
+        app:layout_constraintStart_toStartOf="@+id/logoMenu3"
+        app:layout_constraintTop_toBottomOf="@+id/logoMenu3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descMenu3"
+        style="@style/TextDescription"
+        android:text="@string/desc_menu_3"
+        app:layout_constraintEnd_toEndOf="@+id/titleMenu3"
+        app:layout_constraintStart_toStartOf="@+id/titleMenu3"
+        app:layout_constraintTop_toBottomOf="@+id/titleMenu3" />
+
+    <Button
+        android:id="@+id/btn_join"
+        style="@style/ButtonTheme"
+        android:text="@string/join_now"
+        android:visibility="invisible"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/menu1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:altSrc="@drawable/ic_enable_navigation"
+        app:layout_constraintBottom_toBottomOf="@id/menu2"
+        app:layout_constraintEnd_toStartOf="@+id/menu2"
+        app:layout_constraintTop_toTopOf="@id/menu2"
+        app:srcCompat="@drawable/ic_disable_navigation" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/menu2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:altSrc="@drawable/ic_enable_navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_join"
+        app:srcCompat="@drawable/ic_disable_navigation" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/menu3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:altSrc="@drawable/ic_enable_navigation"
+        app:layout_constraintBottom_toBottomOf="@id/menu2"
+        app:layout_constraintStart_toEndOf="@id/menu2"
+        app:layout_constraintTop_toTopOf="@id/menu2"
+        app:srcCompat="@drawable/ic_disable_navigation" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_next"
+        style="@style/TextOnClick"
+        android:text="@string/next"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/menu3"
+        app:layout_constraintEnd_toEndOf="@+id/btn_join"
+        app:layout_constraintTop_toTopOf="@+id/menu3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_prev"
+        style="@style/TextOnClick"
+        android:text="@string/prev"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/menu1"
+        app:layout_constraintStart_toStartOf="@+id/btn_join"
+        app:layout_constraintTop_toTopOf="@+id/menu1" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
