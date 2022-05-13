@@ -19,4 +19,9 @@
         android:name="com.bangkit.capstone.lukaku.ui.hospital.HospitalFragment"
         android:label="@string/title_hospital"
         tools:layout="@layout/fragment_hospital" />
+    <activity
+        android:id="@+id/navigation_detection"
+        android:name="com.bangkit.capstone.lukaku.ui.detection.DetectionCameraActivity"
+        android:label="activity_detection_camera"
+        tools:layout="@layout/activity_detection_camera" />
 </navigation>
