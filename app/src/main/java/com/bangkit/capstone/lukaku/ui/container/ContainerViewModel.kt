@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.util.*
 
-class SplashScreenViewModel : ViewModel() {
+class ContainerViewModel : ViewModel() {
     fun isReady(): Boolean {
         val result = viewModelScope.runCatching {
             val randomDelays = mutableListOf<Long>(500, 1000, 1500, 2000, 2500, 3000)

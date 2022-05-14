@@ -2,22 +2,26 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/onborarding_navigation"
-    app:startDestination="@id/onborardingFragment">
-
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/navigation_home">
     <fragment
-        android:id="@+id/onborardingFragment"
-        android:name="com.bangkit.capstone.lukaku.ui.onboarding.OnborardingFragment"
-        android:label="fragment_onborarding"
-        tools:layout="@layout/fragment_onborarding">
-        <action
-            android:id="@+id/action_onborardingFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
-    </fragment>
+        android:id="@+id/navigation_home"
+        android:name="com.bangkit.capstone.lukaku.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.bangkit.capstone.lukaku.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_hospital"
+        android:name="com.bangkit.capstone.lukaku.ui.hospital.HospitalFragment"
+        android:label="@string/title_hospital"
+        tools:layout="@layout/fragment_hospital" />
     <activity
-        android:id="@+id/mainActivity"
-        android:name="com.bangkit.capstone.lukaku.ui.main.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
-
+        android:id="@+id/navigation_detection"
+        android:name="com.bangkit.capstone.lukaku.ui.detection.DetectionCameraActivity"
+        android:label="activity_detection_camera"
+        tools:layout="@layout/activity_detection_camera" />
 </navigation>

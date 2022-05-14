@@ -1,4 +1,4 @@
-package com.bangkit.capstone.lukaku.ui.onboarding
+package com.bangkit.capstone.lukaku.ui.sign
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
-import com.bangkit.capstone.lukaku.databinding.FragmentOnborardingBinding
+import com.bangkit.capstone.lukaku.databinding.FragmentSignBinding
 
-class OnborardingFragment : Fragment() {
+class SignFragment : Fragment() {
 
-    private var _binding: FragmentOnborardingBinding? = null
+    private var _binding: FragmentSignBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class OnborardingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentOnborardingBinding.inflate(inflater, container, false)
+        _binding = FragmentSignBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,14 +29,14 @@ class OnborardingFragment : Fragment() {
         startAction()
     }
 
-    private fun startAction() {
-        binding.btnJoin.setOnClickListener {
-            findNavController().navigate(R.id.action_onborardingFragment_to_mainActivity)
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun startAction() {
+        binding.btnSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signFragment_to_mainActivity)
+        }
     }
 }

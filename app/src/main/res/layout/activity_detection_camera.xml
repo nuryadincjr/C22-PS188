@@ -85,7 +85,7 @@
         android:id="@+id/tv_zoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorOnPrimary"
+        android:textColor="@color/white_smoke"
         app:layout_constraintBottom_toTopOf="@+id/seek_bar_zoom"
         app:layout_constraintEnd_toEndOf="@+id/seek_bar_zoom"
         app:layout_constraintStart_toStartOf="@+id/seek_bar_zoom"

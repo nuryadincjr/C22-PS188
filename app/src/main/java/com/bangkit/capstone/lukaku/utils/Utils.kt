@@ -1,4 +1,4 @@
-package com.bangkit.capstone.lukaku.util
+package com.bangkit.capstone.lukaku.utils
 
 import android.app.Application
 import android.content.Context

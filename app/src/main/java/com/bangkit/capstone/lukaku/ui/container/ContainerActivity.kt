@@ -1,45 +1,27 @@
 package com.bangkit.capstone.lukaku.ui.container
 
 import android.animation.ObjectAnimator
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.bangkit.capstone.lukaku.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContainerActivity : AppCompatActivity() {
-
-    private val splashScreenViewModel: SplashScreenViewModel by viewModels()
+    private val viewModel: ContainerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_container)
-
-        setupView()
-        setupPreDrawListener()
-        exitWithSlideUp()
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+        installSplashScreenWithAnim().apply {
+            setupPreDrawListener()
         }
-        supportActionBar?.hide()
+        setContentView(R.layout.activity_container)
     }
 
     private fun setupPreDrawListener() {
@@ -48,7 +30,7 @@ class ContainerActivity : AppCompatActivity() {
             object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     // Check if the initial data is ready.
-                    return if (splashScreenViewModel.isReady()) {
+                    return if (viewModel.isReady()) {
                         // The content is ready; start drawing.
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
@@ -61,25 +43,22 @@ class ContainerActivity : AppCompatActivity() {
         )
     }
 
-    private fun exitWithSlideUp() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            splashScreen.setOnExitAnimationListener { splashScreenView ->
-                // Create custom animation.
-                val slideUp = ObjectAnimator.ofFloat(
-                    splashScreenView,
-                    View.TRANSLATION_Y,
-                    0f,
-                    -splashScreenView.height.toFloat()
-                )
-                slideUp.interpolator = AnticipateInterpolator()
-                slideUp.duration = 200L
-
-                // Call SplashScreenView.remove at the end of the custom animation.
-                slideUp.doOnEnd { splashScreenView.remove() }
-
-                // Run animation.
-                slideUp.start()
-            }
+    private fun installSplashScreenWithAnim() {
+        installSplashScreen().setOnExitAnimationListener { splashScreenView ->
+            // Create custom animation.
+            splashScreenView.iconView.animate().rotation(180F).duration = 500L
+            val slideUp = ObjectAnimator.ofFloat(
+                splashScreenView.iconView,
+                View.TRANSLATION_Y,
+                0f,
+                -splashScreenView.iconView.height.toFloat()
+            )
+            slideUp.interpolator = AnticipateInterpolator()
+            slideUp.duration = 500L
+            // Call SplashScreenView.remove at the end of the custom animation.
+            slideUp.doOnEnd { splashScreenView.remove() }
+            // Run animation.
+            slideUp.start()
         }
     }
 }

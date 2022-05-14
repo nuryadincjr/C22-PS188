@@ -18,7 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.ActivityDetectionCameraBinding
-import com.bangkit.capstone.lukaku.util.createFile
+import com.bangkit.capstone.lukaku.utils.createFile
 import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -65,19 +65,6 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
         hideSystemUI()
         startCamera()
         zoomCamera()
-    }
-
-    private fun zoomCamera() {
-        binding.seekBarZoom.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                cameraControl.setLinearZoom(progress / 100.toFloat())
-                zoomControl()
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-        })
     }
 
     override fun onDestroy() {
@@ -183,6 +170,19 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
                 ).show()
             }
         }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun zoomCamera() {
+        binding.seekBarZoom.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                cameraControl.setLinearZoom(progress / 100.toFloat())
+                zoomControl()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
     }
 
     private fun zoomControl() {
