@@ -23,7 +23,6 @@ import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-
 class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityDetectionCameraBinding
@@ -62,9 +61,15 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
 
     public override fun onResume() {
         super.onResume()
+        setAnimation()
         hideSystemUI()
         startCamera()
         zoomCamera()
+    }
+
+    private fun setAnimation() {
+        val rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE
+        window.attributes.rotationAnimation = rotationAnimation
     }
 
     override fun onDestroy() {
@@ -190,7 +195,7 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
         val liner = (cameraInfo.zoomState.value?.linearZoom)
         val dFormat = DecimalFormat("#.##")
 
-        val zoomStatus = "Zoom: ${dFormat.format(ratio)}x"
+        val zoomStatus = String.format(getString(R.string.zoom_status), dFormat.format(ratio))
         val visibility = if (ratio!! >= 1.01) View.VISIBLE else View.INVISIBLE
 
         binding.apply {

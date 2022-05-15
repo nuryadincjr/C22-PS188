@@ -34,5 +34,6 @@
     <string name="point_to_take_image">Point to take image</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="lets_get_started">Let\'s Get Started!</string>
+    <string name="zoom_status">Zoom: %sx</string>
 
 </resources>
