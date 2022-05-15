@@ -11,13 +11,17 @@
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_signFragment"
-            app:destination="@id/signFragment" />
+            app:destination="@id/signFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/signFragment"
         android:name="com.bangkit.capstone.lukaku.ui.sign.SignFragment"
         android:label="fragment_sign"
-        tools:layout="@layout/fragment_sign" >
+        tools:layout="@layout/fragment_sign">
         <action
             android:id="@+id/action_signFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
