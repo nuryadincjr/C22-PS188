@@ -1,5 +1,6 @@
 package com.bangkit.capstone.lukaku.ui.viewer
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,8 @@ class ViewerFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageSelected = ViewerFragmentArgs.fromBundle(arguments as Bundle).image
+        val imageFile = ViewerFragmentArgs.fromBundle(arguments as Bundle).image
+        val imageSelected = BitmapFactory.decodeFile(imageFile.path)
 
         binding.apply {
             ivSelectedImage.setImageBitmap(imageSelected)

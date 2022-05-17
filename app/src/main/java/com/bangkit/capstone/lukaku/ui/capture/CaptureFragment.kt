@@ -2,13 +2,18 @@ package com.bangkit.capstone.lukaku.ui.capture
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
+import androidx.camera.core.ImageCapture.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -16,7 +21,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentCaptureBinding
+import com.bangkit.capstone.lukaku.utils.Constants.IMAGE_TYPE
 import com.bangkit.capstone.lukaku.utils.createFile
+import com.bangkit.capstone.lukaku.utils.uriToFile
+import java.io.File
 import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -33,6 +41,15 @@ class CaptureFragment : Fragment(), View.OnClickListener {
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
     private var flashFlag: Boolean = false
+
+    private val launcherGallery = registerForActivityResult(StartActivityForResult()) {
+        if (it.resultCode == AppCompatActivity.RESULT_OK) {
+            val imageUri: Uri = it.data?.data as Uri
+            val imageFile = uriToFile(imageUri, requireContext())
+
+            onNavigate(imageFile)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +85,7 @@ class CaptureFragment : Fragment(), View.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        cameraExecutor.shutdown()
     }
 
     override fun onResume() {
@@ -77,28 +95,14 @@ class CaptureFragment : Fragment(), View.OnClickListener {
         zoomCamera()
     }
 
-    private fun setAnimation() {
-        val rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE
-        requireActivity().window.attributes.rotationAnimation = rotationAnimation
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-
     override fun onClick(p0: View) {
         when (p0.id) {
             R.id.iv_selected_image -> takePhoto()
             R.id.iv_switch_camera -> swichCamera()
             R.id.iv_close -> requireActivity().onBackPressed()
             R.id.iv_flash -> setFlash()
-            R.id.iv_open_gallery -> openGallery()
+            R.id.iv_open_gallery -> startGallery()
         }
-    }
-
-    private fun openGallery() {
-        TODO("Not yet implemented")
     }
 
     @Deprecated("Deprecated in Java")
@@ -120,11 +124,23 @@ class CaptureFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    private fun setAnimation() {
+        requireActivity().window.attributes.rotationAnimation = ROTATION_ANIMATION_CROSSFADE
+    }
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             requireActivity().baseContext,
             it
         ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = IMAGE_TYPE
+        val chooser = Intent.createChooser(intent, getString(R.string.title_gallery))
+        launcherGallery.launch(chooser)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -139,7 +155,7 @@ class CaptureFragment : Fragment(), View.OnClickListener {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
-            imageCapture = ImageCapture.Builder().setFlashMode(ImageCapture.FLASH_MODE_OFF).build()
+            imageCapture = Builder().setFlashMode(FLASH_MODE_OFF).build()
 
             try {
                 cameraProvider.unbindAll()
@@ -237,13 +253,13 @@ class CaptureFragment : Fragment(), View.OnClickListener {
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-        val photoFile = createFile(requireActivity().application)
+        val imageFile = createFile(requireActivity().application)
+        val outputOptions = OutputFileOptions.Builder(imageFile).build()
 
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
+            object : OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         context,
@@ -252,15 +268,15 @@ class CaptureFragment : Fragment(), View.OnClickListener {
                     ).show()
                 }
 
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val imageBitmap = BitmapFactory.decodeFile(photoFile.path)
-
-                    val toDetailCategoryFragment =
-                        CaptureFragmentDirections.actionCaptureFragmentToViewerFragment(imageBitmap)
-                    findNavController().navigate(toDetailCategoryFragment)
-                }
+                override fun onImageSaved(output: OutputFileResults) = onNavigate(imageFile)
             }
         )
+    }
+
+    private fun onNavigate(imageFile: File) {
+        val toDetailCategoryFragment =
+            CaptureFragmentDirections.actionCaptureFragmentToViewerFragment(imageFile)
+        findNavController().navigate(toDetailCategoryFragment)
     }
 
     private fun setFlash() {

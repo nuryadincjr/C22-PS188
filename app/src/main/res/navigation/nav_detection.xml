@@ -30,6 +30,6 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="image"
-            app:argType="android.graphics.Bitmap" />
+            app:argType="java.io.File" />
     </fragment>
 </navigation>

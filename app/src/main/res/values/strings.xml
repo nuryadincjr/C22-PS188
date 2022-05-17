@@ -38,5 +38,6 @@
     <string name="selected_image">Selected Image</string>
     <string name="reshoot">Reshoot</string>
     <string name="detection_continue">Continue</string>
+    <string name="title_gallery">Choose a Picture</string>
 
 </resources>
