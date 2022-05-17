@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_arrow_back.xml" value="0.2075" />
+        <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_arrow_forward.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_close.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_detection.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_detection_illustration.xml" value="0.2075" />
@@ -21,16 +23,20 @@
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/ic_take_camera.xml" value="0.2075" />
         <entry key="..\:/C22-PS188/app/src/main/res/drawable/shape_rectangle.xml" value="0.171" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout-land/activity_detection_camera.xml" value="0.25" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout-land/fragment_capture.xml" value="0.25" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_container.xml" value="0.2" />
-        <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_detection_camera.xml" value="0.1" />
-        <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_detection.xml" value="0.2" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_detection_camera.xml" value="0.22" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/activity_on_boarding.xml" value="0.19692307692307692" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_capture.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_hospital.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_onboarding.xml" value="0.18" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_onborarding.xml" value="0.1" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_sign.xml" value="0.22" />
+        <entry key="..\:/C22-PS188/app/src/main/res/layout/fragment_viewer.xml" value="0.22" />
         <entry key="..\:/C22-PS188/app/src/main/res/layout/item_list_history.xml" value="0.33" />
         <entry key="..\:/C22-PS188/app/src/main/res/menu/button_nav_menu.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/menu/menu.xml" value="0.2" />

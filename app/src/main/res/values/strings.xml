@@ -35,5 +35,8 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="lets_get_started">Let\'s Get Started!</string>
     <string name="zoom_status">Zoom: %sx</string>
+    <string name="selected_image">Selected Image</string>
+    <string name="reshoot">Reshoot</string>
+    <string name="detection_continue">Continue</string>
 
 </resources>

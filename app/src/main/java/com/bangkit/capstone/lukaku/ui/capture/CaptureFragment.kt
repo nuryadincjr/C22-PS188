@@ -1,49 +1,54 @@
-package com.bangkit.capstone.lukaku.ui.detection
+package com.bangkit.capstone.lukaku.ui.capture
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
-import androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA
-import androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
-import com.bangkit.capstone.lukaku.databinding.ActivityDetectionCameraBinding
+import com.bangkit.capstone.lukaku.databinding.FragmentCaptureBinding
 import com.bangkit.capstone.lukaku.utils.createFile
 import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
+class CaptureFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var binding: ActivityDetectionCameraBinding
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraControl: CameraControl
     private lateinit var cameraInfo: CameraInfo
 
-    private var cameraSelector: CameraSelector = DEFAULT_BACK_CAMERA
+    private var _binding: FragmentCaptureBinding? = null
+    private val binding get() = _binding!!
+
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
     private var flashFlag: Boolean = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detection_camera)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        _binding = FragmentCaptureBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding = ActivityDetectionCameraBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
-                this,
+                requireActivity(),
                 REQUIRED_PERMISSIONS,
                 REQUEST_CODE_PERMISSIONS
             )
@@ -52,24 +57,29 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         binding.apply {
-            ivCaptureImage.setOnClickListener(this@DetectionCameraActivity)
-            ivSwitchCamera.setOnClickListener(this@DetectionCameraActivity)
-            ivClose.setOnClickListener(this@DetectionCameraActivity)
-            ivFlash.setOnClickListener(this@DetectionCameraActivity)
+            ivSelectedImage.setOnClickListener(this@CaptureFragment)
+            ivSwitchCamera.setOnClickListener(this@CaptureFragment)
+            ivClose.setOnClickListener(this@CaptureFragment)
+            ivFlash.setOnClickListener(this@CaptureFragment)
+            ivOpenGallery.setOnClickListener(this@CaptureFragment)
         }
     }
 
-    public override fun onResume() {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onResume() {
         super.onResume()
         setAnimation()
-        hideSystemUI()
         startCamera()
         zoomCamera()
     }
 
     private fun setAnimation() {
         val rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE
-        window.attributes.rotationAnimation = rotationAnimation
+        requireActivity().window.attributes.rotationAnimation = rotationAnimation
     }
 
     override fun onDestroy() {
@@ -77,15 +87,21 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
         cameraExecutor.shutdown()
     }
 
-    override fun onClick(p0: View?) {
-        when (p0?.id) {
-            R.id.iv_capture_image -> takePhoto()
+    override fun onClick(p0: View) {
+        when (p0.id) {
+            R.id.iv_selected_image -> takePhoto()
             R.id.iv_switch_camera -> swichCamera()
-            R.id.iv_close -> onBackPressed()
+            R.id.iv_close -> requireActivity().onBackPressed()
             R.id.iv_flash -> setFlash()
+            R.id.iv_open_gallery -> openGallery()
         }
     }
 
+    private fun openGallery() {
+        TODO("Not yet implemented")
+    }
+
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -95,22 +111,25 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
                 Toast.makeText(
-                    this,
+                    context,
                     getString(R.string.error_camera_permission),
                     Toast.LENGTH_SHORT
                 ).show()
-                finish()
+                requireActivity().finish()
             }
         }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(
+            requireActivity().baseContext,
+            it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -146,7 +165,7 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
 
-                val scaleGestureDetector = ScaleGestureDetector(this, listener)
+                val scaleGestureDetector = ScaleGestureDetector(context, listener)
 
                 binding.viewFinder.setOnTouchListener { _, p1 ->
                     when (p1.action) {
@@ -169,12 +188,12 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
 
             } catch (exc: Exception) {
                 Toast.makeText(
-                    this,
+                    context,
                     getString(R.string.error_camera_start),
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }, ContextCompat.getMainExecutor(this))
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
     private fun zoomCamera() {
@@ -218,25 +237,27 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-        val photoFile = createFile(application)
+        val photoFile = createFile(requireActivity().application)
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
             outputOptions,
-            ContextCompat.getMainExecutor(this),
+            ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
-                        this@DetectionCameraActivity,
+                        context,
                         getString(R.string.error_camera_take),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val result = BitmapFactory.decodeFile(photoFile.path)
+                    val imageBitmap = BitmapFactory.decodeFile(photoFile.path)
 
-                    binding.ivOpenGallery.setImageBitmap(result)
+                    val toDetailCategoryFragment =
+                        CaptureFragmentDirections.actionCaptureFragmentToViewerFragment(imageBitmap)
+                    findNavController().navigate(toDetailCategoryFragment)
                 }
             }
         )
@@ -248,22 +269,10 @@ class DetectionCameraActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun swichCamera() {
-        cameraSelector = if (cameraSelector == DEFAULT_BACK_CAMERA) DEFAULT_FRONT_CAMERA
-        else DEFAULT_BACK_CAMERA
+        cameraSelector =
+            if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
+            else CameraSelector.DEFAULT_BACK_CAMERA
         startCamera()
-    }
-
-    private fun hideSystemUI() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     companion object {

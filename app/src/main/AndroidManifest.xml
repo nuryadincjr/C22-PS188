@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LukaKu">
         <activity
-            android:name=".ui.detection.DetectionCameraActivity"
+            android:name=".ui.detection.DetectionActivity"
             android:exported="false" />
 
         <meta-data

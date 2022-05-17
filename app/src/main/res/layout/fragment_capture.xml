@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detection.DetectionCameraActivity">
+    tools:context=".ui.capture.CaptureFragment">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/view_finder"
@@ -14,20 +14,18 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_capture_image"
+        android:id="@+id/iv_selected_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/take_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_take_camera" />
 
     <ImageView
@@ -35,10 +33,10 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:contentDescription="@string/switch_camera"
-        app:layout_constraintBottom_toTopOf="@+id/iv_capture_image"
-        app:layout_constraintEnd_toEndOf="@+id/iv_capture_image"
-        app:layout_constraintStart_toStartOf="@+id/iv_capture_image"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_selected_image"
+        app:layout_constraintEnd_toEndOf="@+id/view_finder"
+        app:layout_constraintStart_toEndOf="@+id/iv_selected_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_selected_image"
         app:srcCompat="@drawable/ic_flip_camera" />
 
     <ImageView
@@ -46,10 +44,10 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:contentDescription="@string/open_gallery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/iv_capture_image"
-        app:layout_constraintStart_toStartOf="@+id/iv_capture_image"
-        app:layout_constraintTop_toBottomOf="@+id/iv_capture_image"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_selected_image"
+        app:layout_constraintEnd_toStartOf="@+id/iv_selected_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_selected_image"
         app:srcCompat="@drawable/ic_photo_galery" />
 
     <ImageView
@@ -57,43 +55,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:contentDescription="@string/close"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close" />
 
     <ImageView
         android:id="@+id/iv_flash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:contentDescription="@string/flash"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_flash_off" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/point_to_take_image"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/iv_capture_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:srcCompat="@drawable/ic_detector_line" />
 
     <SeekBar
         android:id="@+id/seek_bar_zoom"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iv_open_gallery"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:rotation="-90"
+        app:layout_constraintBottom_toTopOf="@+id/iv_open_gallery"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_zoom"
@@ -101,23 +88,34 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:textColor="@color/white_smoke"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iv_capture_image"
-        app:layout_constraintStart_toStartOf="@+id/view_finder"
+        app:layout_constraintBottom_toTopOf="@+id/iv_selected_image"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         tools:text="Zoom: 1.05x" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/point_to_take_image"
+        app:layout_constraintBottom_toTopOf="@+id/iv_selected_image"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/view_finder"
+        app:srcCompat="@drawable/ic_detector_line" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
