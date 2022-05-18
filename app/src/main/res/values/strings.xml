@@ -39,5 +39,6 @@
     <string name="reshoot">Reshoot</string>
     <string name="detection_continue">Continue</string>
     <string name="title_gallery">Choose a Picture</string>
+    <string name="crop_image">Crop Image</string>
 
 </resources>

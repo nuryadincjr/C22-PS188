@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.viewer.ViewerFragment">
 
-    <ImageView
+    <com.oginotihiro.cropview.CropView
         android:id="@+id/iv_selected_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,4 +45,18 @@
         app:drawableStartCompat="@drawable/ic_arrow_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="@string/crop_image"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
