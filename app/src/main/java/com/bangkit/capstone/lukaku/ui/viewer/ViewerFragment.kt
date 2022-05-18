@@ -1,6 +1,6 @@
 package com.bangkit.capstone.lukaku.ui.viewer
 
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,10 +28,12 @@ class ViewerFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         val imageFile = ViewerFragmentArgs.fromBundle(arguments as Bundle).image
-        val imageSelected = BitmapFactory.decodeFile(imageFile.path)
 
         binding.apply {
-            ivSelectedImage.setImageBitmap(imageSelected)
+            ivSelectedImage.of(Uri.fromFile(imageFile))
+                .withAspect(ASPECT_X, ASPECT_Y)
+                .withOutputSize(IMAGE_WIDTH, IMAGE_HEIGHT)
+                .initialize(context)
 
             tvReshoot.setOnClickListener(this@ViewerFragment)
             tvContinue.setOnClickListener(this@ViewerFragment)
@@ -50,5 +52,12 @@ class ViewerFragment : Fragment(), View.OnClickListener {
                 findNavController().navigate(R.id.action_viewerFragment_to_captureFragment)
             }
         }
+    }
+
+    companion object {
+        private const val ASPECT_X = 1
+        private const val ASPECT_Y = 1
+        private const val IMAGE_WIDTH = 500
+        private const val IMAGE_HEIGHT = 500
     }
 }

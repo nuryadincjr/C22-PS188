@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.*
 import android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE
 import android.widget.SeekBar
@@ -13,6 +14,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
+import androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA
+import androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA
 import androidx.camera.core.ImageCapture.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
@@ -28,6 +31,9 @@ import java.io.File
 import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 class CaptureFragment : Fragment(), View.OnClickListener {
 
@@ -38,7 +44,7 @@ class CaptureFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCaptureBinding? = null
     private val binding get() = _binding!!
 
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var cameraSelector: CameraSelector = DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
     private var flashFlag: Boolean = false
 
@@ -143,71 +149,91 @@ class CaptureFragment : Fragment(), View.OnClickListener {
         launcherGallery.launch(chooser)
     }
 
+    private fun aspectRatio(width: Int, height: Int): Int {
+        val previewRatio = max(width, height).toDouble() / min(width, height)
+        if (abs(previewRatio - RATIO_4_3_VALUE) <= abs(previewRatio - RATIO_16_9_VALUE)) {
+            return AspectRatio.RATIO_4_3
+        }
+        return AspectRatio.RATIO_16_9
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-                }
+            binding.apply {
+                val displayMetrics =
+                    DisplayMetrics().also { viewFinder.display.getRealMetrics(it) }
+                val aspectRatio =
+                    aspectRatio(displayMetrics.widthPixels, displayMetrics.heightPixels)
+                val rotation = viewFinder.display.rotation
 
-            imageCapture = Builder().setFlashMode(FLASH_MODE_OFF).build()
+                val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+                val preview = Preview.Builder()
+                    .setTargetAspectRatio(aspectRatio)
+                    .setTargetRotation(rotation)
+                    .build()
+                    .also { it.setSurfaceProvider(viewFinder.surfaceProvider) }
 
-            try {
-                cameraProvider.unbindAll()
-                val camera = cameraProvider.bindToLifecycle(
-                    this,
-                    cameraSelector,
-                    preview,
-                    imageCapture
-                )
+                imageCapture = Builder()
+                    .setCaptureMode(CAPTURE_MODE_MINIMIZE_LATENCY)
+                    .setTargetAspectRatio(aspectRatio)
+                    .setTargetRotation(rotation)
+                    .build()
 
-                cameraControl = camera.cameraControl
-                cameraInfo = camera.cameraInfo
+                try {
+                    cameraProvider.unbindAll()
+                    val camera = cameraProvider.bindToLifecycle(
+                        this@CaptureFragment,
+                        cameraSelector,
+                        preview,
+                        imageCapture
+                    )
 
-                flashControl()
+                    cameraControl = camera.cameraControl
+                    cameraInfo = camera.cameraInfo
 
-                val listener = object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-                    override fun onScale(detector: ScaleGestureDetector): Boolean {
-                        val ratio = (cameraInfo.zoomState.value?.zoomRatio)
-                        val scale = detector.scaleFactor
-                        cameraControl.setZoomRatio(scale * ratio!!)
-                        zoomControl()
-                        return true
-                    }
-                }
+                    flashControl()
 
-                val scaleGestureDetector = ScaleGestureDetector(context, listener)
-
-                binding.viewFinder.setOnTouchListener { _, p1 ->
-                    when (p1.action) {
-                        MotionEvent.ACTION_DOWN -> return@setOnTouchListener true
-                        MotionEvent.ACTION_UP -> {
-                            val factory = binding.viewFinder.meteringPointFactory
-                            val point = factory.createPoint(p1.x, p1.y)
-                            val action = FocusMeteringAction.Builder(point).build()
-                            cameraControl.startFocusAndMetering(action)
-
-                            return@setOnTouchListener true
-                        }
-                        else -> {
-                            scaleGestureDetector.onTouchEvent(p1)
-
-                            return@setOnTouchListener false
+                    val listener = object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+                        override fun onScale(detector: ScaleGestureDetector): Boolean {
+                            val ratio = (cameraInfo.zoomState.value?.zoomRatio)
+                            val scale = detector.scaleFactor
+                            cameraControl.setZoomRatio(scale * ratio!!)
+                            zoomControl()
+                            return true
                         }
                     }
-                }
 
-            } catch (exc: Exception) {
-                Toast.makeText(
-                    context,
-                    getString(R.string.error_camera_start),
-                    Toast.LENGTH_SHORT
-                ).show()
+                    val scaleGestureDetector = ScaleGestureDetector(context, listener)
+
+                    viewFinder.setOnTouchListener { _, p1 ->
+                        when (p1.action) {
+                            MotionEvent.ACTION_DOWN -> return@setOnTouchListener true
+                            MotionEvent.ACTION_UP -> {
+                                val factory = viewFinder.meteringPointFactory
+                                val point = factory.createPoint(p1.x, p1.y)
+                                val action = FocusMeteringAction.Builder(point).build()
+                                cameraControl.startFocusAndMetering(action)
+
+                                return@setOnTouchListener true
+                            }
+                            else -> {
+                                scaleGestureDetector.onTouchEvent(p1)
+
+                                return@setOnTouchListener false
+                            }
+                        }
+                    }
+
+                } catch (exc: Exception) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.error_camera_start),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }, ContextCompat.getMainExecutor(requireContext()))
     }
@@ -276,6 +302,7 @@ class CaptureFragment : Fragment(), View.OnClickListener {
     private fun onNavigate(imageFile: File) {
         val toDetailCategoryFragment =
             CaptureFragmentDirections.actionCaptureFragmentToViewerFragment(imageFile)
+
         findNavController().navigate(toDetailCategoryFragment)
     }
 
@@ -286,13 +313,16 @@ class CaptureFragment : Fragment(), View.OnClickListener {
 
     private fun swichCamera() {
         cameraSelector =
-            if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-            else CameraSelector.DEFAULT_BACK_CAMERA
+            if (cameraSelector == DEFAULT_BACK_CAMERA) DEFAULT_FRONT_CAMERA
+            else DEFAULT_BACK_CAMERA
+
         startCamera()
     }
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+        private const val RATIO_4_3_VALUE = 4.0 / 3.0
+        private const val RATIO_16_9_VALUE = 16.0 / 9.0
     }
 }
