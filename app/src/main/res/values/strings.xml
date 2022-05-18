@@ -40,5 +40,6 @@
     <string name="detection_continue">Continue</string>
     <string name="title_gallery">Choose a Picture</string>
     <string name="crop_image">Crop Image</string>
+    <string name="image_of_headline">Image of Headline</string>
 
 </resources>
