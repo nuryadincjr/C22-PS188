@@ -49,4 +49,12 @@
     <string name="account_created_success_message">Account created successfully</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="still_under_development">Still under development!</string>
+    <string name="selected_image">Selected Image</string>
+    <string name="reshoot">Reshoot</string>
+    <string name="detection_continue">Continue</string>
+    <string name="title_gallery">Choose a Picture</string>
+    <string name="crop_image">Crop Image</string>
+    <string name="image_of_headline">Image of Headline</string>
+    <string name="search_hint">Search articles…</string>
+    <string name="articles">Articles</string>
 </resources>

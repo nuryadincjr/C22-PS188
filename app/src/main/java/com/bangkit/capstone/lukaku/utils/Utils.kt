@@ -1,6 +1,7 @@
 package com.bangkit.capstone.lukaku.utils
 
 import android.app.Application
+import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
@@ -10,6 +11,9 @@ import com.bangkit.capstone.lukaku.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,3 +51,19 @@ fun ImageView.loadCircleImage(imageSource: Uri?) {
 }
 
 fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+fun uriToFile(uri: Uri, context: Context): File {
+    val contentResolver: ContentResolver = context.contentResolver
+    val imageFile = createTempFile(context)
+
+    val inputStream = contentResolver.openInputStream(uri) as InputStream
+    val outputStream: OutputStream = FileOutputStream(imageFile)
+    val buf = ByteArray(1024)
+    var len: Int
+
+    while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+    outputStream.close()
+    inputStream.close()
+
+    return imageFile
+}
