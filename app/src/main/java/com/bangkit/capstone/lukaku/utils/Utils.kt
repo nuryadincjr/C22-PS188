@@ -46,7 +46,8 @@ fun ImageView.loadCircleImage(imageSource: Uri?) {
         .load(imageSource)
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .placeholder(R.drawable.ic_sample_avatar)
+        .placeholder(R.drawable.ic_image_load)
+        .error(R.drawable.ic_image_broken)
         .into(this)
 }
 

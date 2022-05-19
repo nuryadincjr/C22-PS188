@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:fontFamily="@font/lato_black"
-            android:textSize="20sp"
             android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_description"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="A Warning Anonymous" />
@@ -41,8 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
             android:fontFamily="@font/lato"
-            android:textSize="12sp"
             android:textColor="@color/nobel"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             tools:text="A Senior Trump Administration Official" />

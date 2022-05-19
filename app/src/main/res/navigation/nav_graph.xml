@@ -16,8 +16,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:launchSingleTop="true" />
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/signFragment"

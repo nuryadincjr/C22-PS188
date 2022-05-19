@@ -9,7 +9,7 @@
         android:id="@+id/captureFragment"
         android:name="com.bangkit.capstone.lukaku.ui.capture.CaptureFragment"
         android:label="fragment_capture"
-        tools:layout="@layout/fragment_capture" >
+        tools:layout="@layout/fragment_capture">
         <action
             android:id="@+id/action_captureFragment_to_viewerFragment"
             app:destination="@id/viewerFragment"
@@ -21,7 +21,7 @@
         android:id="@+id/viewerFragment"
         android:name="com.bangkit.capstone.lukaku.ui.viewer.ViewerFragment"
         android:label="fragment_viewer"
-        tools:layout="@layout/fragment_viewer" >
+        tools:layout="@layout/fragment_viewer">
         <action
             android:id="@+id/action_viewerFragment_to_captureFragment"
             app:destination="@id/captureFragment"

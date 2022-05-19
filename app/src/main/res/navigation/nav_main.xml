@@ -28,9 +28,9 @@
         tools:layout="@layout/fragment_hospital" />
     <activity
         android:id="@+id/navigation_detection"
-        android:name="com.bangkit.capstone.lukaku.ui.detection.DetectionCameraActivity"
+        android:name="com.bangkit.capstone.lukaku.ui.detection.DetectionActivity"
         android:label="activity_detection_camera"
-        tools:layout="@layout/activity_detection_camera" />
+        tools:layout="@layout/activity_detection" />
     <fragment
         android:id="@+id/appSettingsFragment"
         android:name="com.bangkit.capstone.lukaku.ui.appsettings.AppSettingsFragment"

@@ -57,4 +57,5 @@
     <string name="image_of_headline">Image of Headline</string>
     <string name="search_hint">Search articles…</string>
     <string name="articles">Articles</string>
+    <string name="back">Back</string>
 </resources>
