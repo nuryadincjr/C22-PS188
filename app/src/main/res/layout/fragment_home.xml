@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -65,8 +65,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
+                android:layout_marginBottom="16dp"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/vp_headline"
                 app:layout_constraintEnd_toEndOf="@+id/vp_headline"
                 app:tabBackground="@drawable/selector_indicator_tab"
                 app:tabIndicatorHeight="0dp"
