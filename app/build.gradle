@@ -50,7 +50,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // SplashScreenAPI
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
 
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
@@ -89,4 +89,14 @@ dependencies {
 
     // Lottie
     implementation 'com.airbnb.android:lottie:5.0.3'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
+
+    // CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // SmoothBar
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
 }

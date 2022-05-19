@@ -9,11 +9,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="black_pearl">#222831</color>
+    <color name="black_pearl_transparent">#33222831</color>
+    <color name="white_smoke_transparent">#33EAEAEA</color>
     <color name="white_smoke">#EAEAEA</color>
     <color name="ic_launcher_background">#222831</color>
     <color name="green">#39B54A</color>
     <color name="blue">#00AEEF</color>
     <color name="bunting">#2C394B</color>
     <color name="nobel">#9A9A9A</color>
-
+    <color name="nobel_transparent">#4D9A9A9A</color>
 </resources>

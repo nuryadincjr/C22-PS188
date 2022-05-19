@@ -13,7 +13,14 @@
         android:id="@+id/navigation_profile"
         android:name="com.bangkit.capstone.lukaku.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_containerActivity"
+            app:destination="@id/containerActivity" />
+        <action
+            android:id="@+id/action_navigation_profile_to_appSettingsFragment"
+            app:destination="@id/appSettingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_hospital"
         android:name="com.bangkit.capstone.lukaku.ui.hospital.HospitalFragment"
@@ -24,4 +31,14 @@
         android:name="com.bangkit.capstone.lukaku.ui.detection.DetectionCameraActivity"
         android:label="activity_detection_camera"
         tools:layout="@layout/activity_detection_camera" />
+    <fragment
+        android:id="@+id/appSettingsFragment"
+        android:name="com.bangkit.capstone.lukaku.ui.appsettings.AppSettingsFragment"
+        android:label="fragment_app_settings"
+        tools:layout="@layout/fragment_app_settings" />
+    <activity
+        android:id="@+id/containerActivity"
+        android:name="com.bangkit.capstone.lukaku.ui.container.ContainerActivity"
+        android:label="activity_container"
+        tools:layout="@layout/activity_container" />
 </navigation>

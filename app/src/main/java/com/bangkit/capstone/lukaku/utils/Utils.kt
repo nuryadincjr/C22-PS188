@@ -2,8 +2,13 @@ package com.bangkit.capstone.lukaku.utils
 
 import android.app.Application
 import android.content.Context
+import android.net.Uri
 import android.os.Environment
+import android.widget.ImageView
+import android.widget.Toast
 import com.bangkit.capstone.lukaku.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,3 +36,14 @@ fun createFile(application: Application): File {
 
     return File(outputDirectory, "$timeStamp.jpg")
 }
+
+fun ImageView.loadCircleImage(imageSource: Uri?) {
+    Glide.with(this)
+        .load(imageSource)
+        .centerCrop()
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.ic_sample_avatar)
+        .into(this)
+}
+
+fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

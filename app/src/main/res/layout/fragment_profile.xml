@@ -14,16 +14,16 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:toolbarId="@+id/toolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="50dp">
+                android:background="?attr/colorPrimary"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="25dp">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -38,16 +38,15 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/lato_black"
+                            android:fontFamily="@font/nunito_extrabold"
                             android:gravity="center"
                             android:text="@string/title_profile"
-                            android:textColor="@color/white_smoke"
-                            android:textSize="18sp" />
+                            android:textColor="?attr/colorPrimaryVariant"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/iv_settings"
@@ -62,58 +61,43 @@
 
                 </androidx.appcompat.widget.Toolbar>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:layout_marginTop="8dp"
-                    app:cardCornerRadius="100dp"
                     app:layout_constraintEnd_toEndOf="@+id/toolbar"
                     app:layout_constraintStart_toStartOf="@+id/toolbar"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                    tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/iv_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/image_profile"
-                        android:minWidth="180dp"
-                        android:minHeight="180dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                        tools:src="@tools:sample/avatars" />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/lato_black"
+                    android:fontFamily="@font/nunito_extrabold"
                     android:gravity="center"
                     android:maxLines="2"
-                    android:textColor="@color/white_smoke"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="@+id/cardView"
-                    app:layout_constraintStart_toStartOf="@+id/cardView"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    android:textColor="?attr/colorPrimaryVariant"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+                    app:layout_constraintStart_toStartOf="@+id/iv_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_profile"
                     tools:text="Full name" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/lato_light"
-                    android:textColor="@color/white_smoke"
-                    android:textSize="14sp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="?attr/colorPrimaryVariant"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tv_name"
                     app:layout_constraintStart_toStartOf="@+id/tv_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                    tools:text="email or username" />
+                    tools:text="Email" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -130,26 +114,27 @@
             android:layout_height="match_parent"
             tools:context=".ui.profile.ProfileFragment">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:fontFamily="@font/nunito_sans_semibold"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/nunito_extrabold"
                 android:text="@string/history"
-                android:textColor="@color/black_pearl"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
+            <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="4dp"
-                android:background="@color/white_smoke"
+                style="@style/DivStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_label"
                 app:layout_constraintStart_toStartOf="@+id/tv_label"
                 app:layout_constraintTop_toBottomOf="@+id/tv_label" />
@@ -160,10 +145,22 @@
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view"
-                tools:listitem="@layout/item_list_history"/>
+                tools:listitem="@layout/item_list_history" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

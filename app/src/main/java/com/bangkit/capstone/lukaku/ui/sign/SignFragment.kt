@@ -12,39 +12,39 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentSignBinding
+import com.bangkit.capstone.lukaku.utils.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class SignFragment : Fragment() {
-
     private var _binding: FragmentSignBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            try {
-                val account = task.getResult(ApiException::class.java)!!
-                Log.d("TAG", "firebaseAuthWithGoogle:" + account.id)
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                Log.w("TAG", "Google sign in failed", e)
-            }
-            binding.lottie.apply {
-                visibility = VISIBLE
-                playAnimation()
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                try {
+                    val account = task.getResult(ApiException::class.java)!!
+                    Log.d("TAG", "firebaseAuthWithGoogle:" + account.id)
+                    firebaseAuthWithGoogle(account.idToken!!)
+                } catch (e: ApiException) {
+                    Log.w("TAG", "Google sign in failed", e)
+                }
+                binding.lottie.apply {
+                    visibility = VISIBLE
+                    playAnimation()
+                }
             }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +59,7 @@ class SignFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.web_client_id))
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
@@ -85,24 +85,32 @@ class SignFragment : Fragment() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "signInWithCredential:success")
-                    val user = auth.currentUser
-                    updateUI(user)
+            .addOnSuccessListener { task ->
+                // Get LoggedIn User
+                val user = auth.currentUser
+                // Check if user is new or existing
+                if (task.additionalUserInfo!!.isNewUser) {
+                    requireActivity().toast(getString(R.string.account_created_success_message))
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TAG", "signInWithCredential:failure", task.exception)
-                    updateUI(null)
+                    requireActivity().toast(
+                        getString(
+                            R.string.sign_in_welcome_message,
+                            user?.displayName
+                        )
+                    )
                 }
+                moveToMainActivity()
+            }
+            .addOnFailureListener {
+                // Sign in failed
+                requireActivity().toast(getString(R.string.sign_in_failed_message))
+                binding.lottie.visibility = INVISIBLE
             }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        if (user != null) {
-            findNavController().navigate(R.id.action_signFragment_to_mainActivity)
-            binding.lottie.visibility = INVISIBLE
-        }
+    private fun moveToMainActivity() {
+        findNavController().navigate(R.id.action_signFragment_to_mainActivity)
+        binding.lottie.visibility = INVISIBLE
+        requireActivity().finish()
     }
 }

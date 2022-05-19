@@ -34,5 +34,19 @@
     <string name="point_to_take_image">Point to take image</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="lets_get_started">Let\'s Get Started!</string>
-    <string name="web_client_id">490721919921-tfr5duli1avs6t15k4um4jm6lgu2ao5q.apps.googleusercontent.com</string>
+    <string name="zoom_status">Zoom: %sx</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="app_settings">App Settings</string>
+    <string name="change_language">Change Language</string>
+    <string name="common">COMMON</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="theme">THEME</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_title_sign_out">Are you sure?</string>
+    <string name="dialog_message_sign_out">You need to sign in again after sign out.</string>
+    <string name="sign_in_failed_message">Please check your internet network</string>
+    <string name="sign_in_welcome_message">Welcome, %s</string>
+    <string name="account_created_success_message">Account created successfully</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="still_under_development">Still under development!</string>
 </resources>
