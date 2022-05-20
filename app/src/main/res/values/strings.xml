@@ -58,4 +58,5 @@
     <string name="search_hint">Search articles…</string>
     <string name="articles">Articles</string>
     <string name="back">Back</string>
+    <string name="please_wait">Please Wait...</string>
 </resources>

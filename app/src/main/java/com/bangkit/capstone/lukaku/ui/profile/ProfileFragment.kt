@@ -1,9 +1,10 @@
 package com.bangkit.capstone.lukaku.ui.profile
 
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.view.View.VISIBLE
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,11 +17,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
         setProfile()
+        initProgressDialog()
         binding.ivSettings.setOnClickListener {
             showPopup(binding.ivSettings)
         }
@@ -93,7 +95,13 @@ class ProfileFragment : Fragment() {
     private fun signOut() {
         auth.signOut()
         findNavController().navigate(R.id.action_navigation_profile_to_containerActivity)
-        binding.progressBar.visibility = VISIBLE
+        dialog.show()
         requireActivity().finish()
+    }
+
+    private fun initProgressDialog() {
+        dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.dialog_loading)
+        dialog.setCancelable(false)
     }
 }

@@ -1,6 +1,8 @@
 package com.bangkit.capstone.lukaku.ui.sign
 
 import android.app.Activity
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
@@ -27,6 +30,7 @@ class SignFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var dialog: Dialog
 
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -39,10 +43,7 @@ class SignFragment : Fragment() {
                 } catch (e: ApiException) {
                     Log.w("TAG", "Google sign in failed", e)
                 }
-                binding.lottie.apply {
-                    visibility = VISIBLE
-                    playAnimation()
-                }
+                dialog.show()
             }
         }
 
@@ -57,6 +58,7 @@ class SignFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -66,6 +68,8 @@ class SignFragment : Fragment() {
 
         // Init Firebase Auth
         auth = Firebase.auth
+
+        initProgressDialog()
 
         binding.btnSignIn.setOnClickListener {
             signIn()
@@ -104,13 +108,19 @@ class SignFragment : Fragment() {
             .addOnFailureListener {
                 // Sign in failed
                 requireActivity().toast(getString(R.string.sign_in_failed_message))
-                binding.lottie.visibility = INVISIBLE
+                dialog.dismiss()
             }
     }
 
     private fun moveToMainActivity() {
         findNavController().navigate(R.id.action_signFragment_to_mainActivity)
-        binding.lottie.visibility = INVISIBLE
+        dialog.dismiss()
         requireActivity().finish()
+    }
+
+    private fun initProgressDialog() {
+        dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.dialog_loading)
+        dialog.setCancelable(false)
     }
 }
