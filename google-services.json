@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "490721919921",
+    "project_id": "lukaku-app",
+    "storage_bucket": "lukaku-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490721919921:android:86f5071edf722946a8f390",
+        "android_client_info": {
+          "package_name": "com.bangkit.capstone.lukaku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490721919921-huqra0p2gb425jj05gl9p8itcb8gveo4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bangkit.capstone.lukaku",
+            "certificate_hash": "c978f50120343c2c4c9b8de737754627a7a36e9b"
+          }
+        },
+        {
+          "client_id": "490721919921-s1rndbqkurbeee1fer39hsb0rmj8rcr7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bangkit.capstone.lukaku",
+            "certificate_hash": "b247370cdd2bf40da7a14576dac77a7ddaeadccc"
+          }
+        },
+        {
+          "client_id": "490721919921-tfr5duli1avs6t15k4um4jm6lgu2ao5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAldcbjC6J1-oz3NBCb74s4tNioG0__gN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490721919921-tfr5duli1avs6t15k4um4jm6lgu2ao5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
