@@ -2,7 +2,6 @@ package com.bangkit.capstone.lukaku.ui.sign
 
 import android.app.Activity
 import android.app.Dialog
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,7 +28,7 @@ class SignFragment : Fragment() {
     private var _binding: FragmentSignBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var client: GoogleSignInClient
     private lateinit var dialog: Dialog
 
     private var resultLauncher =
@@ -64,7 +63,7 @@ class SignFragment : Fragment() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+        client = GoogleSignIn.getClient(requireActivity(), gso)
 
         // Init Firebase Auth
         auth = Firebase.auth
@@ -82,7 +81,7 @@ class SignFragment : Fragment() {
     }
 
     private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
+        val signInIntent = client.signInIntent
         resultLauncher.launch(signInIntent)
     }
 
@@ -119,8 +118,9 @@ class SignFragment : Fragment() {
     }
 
     private fun initProgressDialog() {
-        dialog = Dialog(requireActivity())
-        dialog.setContentView(R.layout.dialog_loading)
-        dialog.setCancelable(false)
+        dialog = Dialog(requireActivity()).apply {
+            setContentView(R.layout.dialog_loading)
+            setCancelable(false)
+        }
     }
 }

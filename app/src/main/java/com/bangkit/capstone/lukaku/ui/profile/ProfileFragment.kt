@@ -1,10 +1,12 @@
 package com.bangkit.capstone.lukaku.ui.profile
 
 import android.app.Dialog
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,6 +14,9 @@ import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentProfileBinding
 import com.bangkit.capstone.lukaku.utils.loadCircleImage
 import com.bangkit.capstone.lukaku.utils.toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,7 +25,9 @@ import com.google.firebase.ktx.Firebase
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var auth: FirebaseAuth
+    private lateinit var client: GoogleSignInClient
     private lateinit var dialog: Dialog
 
     override fun onCreateView(
@@ -34,12 +41,19 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val gso = Builder(DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
         auth = Firebase.auth
+        client = GoogleSignIn.getClient(requireActivity(), gso)
+
         setProfile()
         initProgressDialog()
-        binding.ivSettings.setOnClickListener {
-            showPopup(binding.ivSettings)
-        }
+
+        binding.ivSettings.setOnClickListener { showPopup(binding.ivSettings) }
     }
 
     override fun onDestroyView() {
@@ -59,9 +73,11 @@ class ProfileFragment : Fragment() {
     private fun showPopup(v: View) {
         val popup = PopupMenu(requireActivity(), v)
         val inflater: MenuInflater = popup.menuInflater
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             popup.setForceShowIcon(true)
         }
+
         inflater.inflate(R.menu.popup_menu_profile, popup.menu)
         popup.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -94,14 +110,17 @@ class ProfileFragment : Fragment() {
 
     private fun signOut() {
         auth.signOut()
-        findNavController().navigate(R.id.action_navigation_profile_to_containerActivity)
+        client.signOut()
         dialog.show()
+
+        findNavController().navigate(R.id.action_navigation_profile_to_containerActivity)
         requireActivity().finish()
     }
 
     private fun initProgressDialog() {
-        dialog = Dialog(requireActivity())
-        dialog.setContentView(R.layout.dialog_loading)
-        dialog.setCancelable(false)
+        dialog = Dialog(requireActivity()).apply {
+            setContentView(R.layout.dialog_loading)
+            setCancelable(false)
+        }
     }
 }
