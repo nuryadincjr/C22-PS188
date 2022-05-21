@@ -5,6 +5,26 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/onboardingFragment">
     <fragment
+        android:id="@+id/viewerFragment"
+        android:name="com.bangkit.capstone.lukaku.ui.viewer.ViewerFragment"
+        android:label="fragment_viewer"
+        tools:layout="@layout/fragment_viewer">
+        <action
+            android:id="@+id/action_viewerFragment_to_captureFragment"
+            app:destination="@id/nav_main"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_detection"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="image"
+            app:argType="java.io.File" />
+    </fragment>
+    <fragment
+        android:id="@+id/appSettingsFragment"
+        android:name="com.bangkit.capstone.lukaku.ui.appsettings.AppSettingsFragment"
+        android:label="fragment_app_settings"
+        tools:layout="@layout/fragment_app_settings" />
+    <fragment
         android:id="@+id/onboardingFragment"
         android:name="com.bangkit.capstone.lukaku.ui.onboarding.OnboardingFragment"
         android:label="fragment_onboarding"
@@ -19,6 +39,12 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/onboardingFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_navigation_home"
+            app:destination="@id/nav_main"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signFragment"
@@ -26,16 +52,51 @@
         android:label="fragment_sign"
         tools:layout="@layout/fragment_sign">
         <action
-            android:id="@+id/action_signFragment_to_mainActivity"
-            app:destination="@id/mainActivity"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            android:id="@+id/action_signFragment_to_navigation_home"
+            app:destination="@id/nav_main"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/signFragment"
+            app:popUpToInclusive="true" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.bangkit.capstone.lukaku.ui.main.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <navigation android:id="@+id/nav_main"
+        app:startDestination="@id/navigation_home">
+        <fragment
+            android:id="@+id/navigation_hospital"
+            android:name="com.bangkit.capstone.lukaku.ui.hospital.HospitalFragment"
+            android:label="@string/title_hospital"
+            tools:layout="@layout/fragment_hospital" />
+        <fragment
+            android:id="@+id/navigation_detection"
+            android:name="com.bangkit.capstone.lukaku.ui.capture.CaptureFragment"
+            android:label="fragment_capture"
+            tools:layout="@layout/fragment_capture">
+            <action
+                android:id="@+id/action_captureFragment_to_viewerFragment"
+                app:destination="@id/viewerFragment"
+                app:launchSingleTop="true"
+                app:popUpTo="@id/viewerFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_profile"
+            android:name="com.bangkit.capstone.lukaku.ui.profile.ProfileFragment"
+            android:label="@string/title_profile"
+            tools:layout="@layout/fragment_profile">
+            <action
+                android:id="@+id/action_navigation_profile_to_appSettingsFragment"
+                app:destination="@id/appSettingsFragment" />
+            <action
+                android:id="@+id/action_navigation_profile_to_signFragment"
+                app:destination="@id/signFragment"
+                app:launchSingleTop="true"
+                app:popUpTo="@id/nav_graph"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_home"
+            android:name="com.bangkit.capstone.lukaku.ui.home.HomeFragment"
+            android:label="@string/title_home"
+            tools:layout="@layout/fragment_home" />
+    </navigation>
+
 </navigation>

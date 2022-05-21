@@ -1,13 +1,13 @@
 package com.bangkit.capstone.lukaku.utils
 
 import android.app.Application
-import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.navigation.NavController
 import com.bangkit.capstone.lukaku.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -68,4 +68,15 @@ fun uriToFile(uri: Uri, context: Context): File {
     inputStream.close()
 
     return imageFile
+}
+
+fun NavController.popBackStackAllInstances(destination: Int, inclusive: Boolean): Boolean {
+    var popped: Boolean
+    while (true) {
+        popped = popBackStack(destination, inclusive)
+        if (!popped) {
+            break
+        }
+    }
+    return popped
 }

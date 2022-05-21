@@ -24,9 +24,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentCaptureBinding
+import com.bangkit.capstone.lukaku.ui.capture.CaptureFragmentDirections.actionCaptureFragmentToViewerFragment
 import com.bangkit.capstone.lukaku.utils.Constants.IMAGE_TYPE
 import com.bangkit.capstone.lukaku.utils.createFile
 import com.bangkit.capstone.lukaku.utils.uriToFile
+import me.ibrahimsn.lib.SmoothBottomBar
 import java.io.File
 import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
@@ -37,12 +39,13 @@ import kotlin.math.min
 
 class CaptureFragment : Fragment(), View.OnClickListener {
 
+    private var _binding: FragmentCaptureBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraControl: CameraControl
     private lateinit var cameraInfo: CameraInfo
-
-    private var _binding: FragmentCaptureBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var bottomBar: SmoothBottomBar
 
     private var cameraSelector: CameraSelector = DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
@@ -68,6 +71,9 @@ class CaptureFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        bottomBar = requireActivity().findViewById(R.id.bottomBar)
+        bottomBar.visibility = View.GONE
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -300,10 +306,8 @@ class CaptureFragment : Fragment(), View.OnClickListener {
     }
 
     private fun onNavigate(imageFile: File) {
-        val toDetailCategoryFragment =
-            CaptureFragmentDirections.actionCaptureFragmentToViewerFragment(imageFile)
-
-        findNavController().navigate(toDetailCategoryFragment)
+        val directions = actionCaptureFragmentToViewerFragment(imageFile)
+        findNavController().navigate(directions)
     }
 
     private fun setFlash() {

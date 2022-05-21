@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_outline_home"
         android:title="@string/title_home" />
     <item
         android:id="@+id/navigation_hospital"
-        android:icon="@drawable/ic_hospital"
+        android:icon="@drawable/ic_outline_hospital"
         android:title="@string/title_hospital" />
     <item
         android:id="@+id/navigation_detection"
-        android:icon="@drawable/ic_start_detection"
+        android:icon="@drawable/ic_outline_detection"
         android:title="@string/title_detection" />
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_outline_profile"
         android:title="@string/title_profile" />
 </menu>

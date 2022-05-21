@@ -9,7 +9,6 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
@@ -23,13 +22,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import me.ibrahimsn.lib.SmoothBottomBar
 
 class SignFragment : Fragment() {
     private var _binding: FragmentSignBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
     private lateinit var dialog: Dialog
+    private lateinit var bottomBar: SmoothBottomBar
 
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -46,6 +48,13 @@ class SignFragment : Fragment() {
             }
         }
 
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        bottomBar = requireActivity().findViewById(R.id.bottomBar)
+        bottomBar.visibility = GONE
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,22 +66,19 @@ class SignFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        client = GoogleSignIn.getClient(requireActivity(), gso)
 
         // Init Firebase Auth
         auth = Firebase.auth
+        client = GoogleSignIn.getClient(requireActivity(), gso)
 
         initProgressDialog()
 
-        binding.btnSignIn.setOnClickListener {
-            signIn()
-        }
+        binding.btnSignIn.setOnClickListener { signIn() }
     }
 
     override fun onDestroyView() {
@@ -112,9 +118,8 @@ class SignFragment : Fragment() {
     }
 
     private fun moveToMainActivity() {
-        findNavController().navigate(R.id.action_signFragment_to_mainActivity)
+        findNavController().navigate(R.id.action_signFragment_to_navigation_home)
         dialog.dismiss()
-        requireActivity().finish()
     }
 
     private fun initProgressDialog() {
