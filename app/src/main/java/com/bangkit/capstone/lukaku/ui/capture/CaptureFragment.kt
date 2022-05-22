@@ -2,7 +2,6 @@ package com.bangkit.capstone.lukaku.ui.capture
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -25,12 +24,10 @@ import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentCaptureBinding
 import com.bangkit.capstone.lukaku.ui.capture.CaptureFragmentDirections.actionCaptureFragmentToViewerFragment
-import com.bangkit.capstone.lukaku.utils.ActivityLifeObserver
 import com.bangkit.capstone.lukaku.utils.Constants.IMAGE_TYPE
 import com.bangkit.capstone.lukaku.utils.createFile
 import com.bangkit.capstone.lukaku.utils.toast
 import com.bangkit.capstone.lukaku.utils.uriToFile
-import me.ibrahimsn.lib.SmoothBottomBar
 import java.io.File
 import java.text.DecimalFormat
 import java.util.concurrent.ExecutorService
@@ -47,7 +44,6 @@ class CaptureFragment : Fragment(), View.OnClickListener {
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraControl: CameraControl
     private lateinit var cameraInfo: CameraInfo
-    private lateinit var bottomBar: SmoothBottomBar
 
     private var cameraSelector: CameraSelector = DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
@@ -60,13 +56,6 @@ class CaptureFragment : Fragment(), View.OnClickListener {
 
             onNavigate(imageFile)
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        activity?.lifecycle?.addObserver(ActivityLifeObserver {
-            bottomBar = requireActivity().findViewById(R.id.bottomBar)
-        })
     }
 
     override fun onCreateView(
@@ -102,8 +91,6 @@ class CaptureFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        bottomBar.visibility = View.GONE
-
         setAnimation()
         startCamera()
         zoomCamera()

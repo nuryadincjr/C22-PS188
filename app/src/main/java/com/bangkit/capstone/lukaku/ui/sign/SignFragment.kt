@@ -2,7 +2,6 @@ package com.bangkit.capstone.lukaku.ui.sign
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentSignBinding
-import com.bangkit.capstone.lukaku.utils.ActivityLifeObserver
 import com.bangkit.capstone.lukaku.utils.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -24,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import me.ibrahimsn.lib.SmoothBottomBar
 
 class SignFragment : Fragment() {
     private var _binding: FragmentSignBinding? = null
@@ -33,7 +30,6 @@ class SignFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
     private lateinit var dialog: Dialog
-    private lateinit var bottomBar: SmoothBottomBar
 
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -49,13 +45,6 @@ class SignFragment : Fragment() {
                 dialog.show()
             }
         }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        activity?.lifecycle?.addObserver(ActivityLifeObserver {
-            bottomBar = requireActivity().findViewById(R.id.bottomBar)
-        })
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,11 +70,6 @@ class SignFragment : Fragment() {
         initProgressDialog()
 
         binding.btnSignIn.setOnClickListener { signIn() }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        bottomBar.visibility = GONE
     }
 
     override fun onDestroyView() {

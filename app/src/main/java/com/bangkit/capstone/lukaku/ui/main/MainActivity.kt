@@ -2,6 +2,7 @@ package com.bangkit.capstone.lukaku.ui.main
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.view.ViewTreeObserver
@@ -47,6 +48,26 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         navController.navigateUp()
         return true
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("XXXX", "1")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("XXXX", "2")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("XXXX", "3")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("XXXX", "0")
     }
 
     private fun setupPreDrawListener() {

@@ -20,8 +20,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="@color/black" />
+            android:src="@drawable/ic_arrow_back" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSettings"

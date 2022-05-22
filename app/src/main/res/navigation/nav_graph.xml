@@ -54,7 +54,9 @@
         <action
             android:id="@+id/action_signFragment_to_navigation_home"
             app:destination="@id/navigation_home"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/signFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -82,11 +84,17 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_navigation_profile_to_appSettingsFragment"
-            app:destination="@id/appSettingsFragment" />
+            app:destination="@id/appSettingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_navigation_profile_to_signFragment"
             app:destination="@id/signFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>

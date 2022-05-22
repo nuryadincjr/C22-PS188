@@ -51,4 +51,9 @@ class HospitalFragment : Fragment() {
         super.onResume()
         bottomBar.visibility = View.VISIBLE
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        bottomBar.visibility = View.GONE
+    }
 }
