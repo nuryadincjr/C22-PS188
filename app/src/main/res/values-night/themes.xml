@@ -9,17 +9,18 @@
         <item name="colorSecondary">@color/white_smoke</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/white_smoke</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor">@color/black_pearl</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/black_pearl</item>
+        <item name="android:navigationBarColor">@color/black_pearl_transparent</item>
+        <item name="android:statusBarColor">@color/black_pearl_transparent</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/black_pearl</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_mark_logo_night</item>
-        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">@color/black_pearl_transparent</item>
         <item name="postSplashScreenTheme">@style/Theme.LukaKu</item>
     </style>
 

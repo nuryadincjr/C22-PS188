@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.bangkit.capstone.lukaku.data.local.OnboardingDataStore
+import com.bangkit.capstone.lukaku.data.local.SettingsDataStore
 import com.bangkit.capstone.lukaku.utils.Constants.DATASTORE_PREF
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,11 @@ class DataStoreModule {
 
     @Singleton
     @Provides
-    fun provideSettingsDataStore(dataStore: DataStore<Preferences>): OnboardingDataStore =
+    fun provideOnboardingDataStore(dataStore: DataStore<Preferences>): OnboardingDataStore =
         OnboardingDataStore(dataStore)
+
+    @Singleton
+    @Provides
+    fun provideSettingsDataStore(dataStore: DataStore<Preferences>): SettingsDataStore =
+        SettingsDataStore(dataStore)
 }

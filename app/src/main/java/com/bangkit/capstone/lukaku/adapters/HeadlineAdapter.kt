@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.ItemListHeadlineBinding
 import com.bangkit.capstone.lukaku.databinding.ItemListHeadlineBinding.inflate
-import com.bangkit.capstone.lukaku.models.Headline
+import com.bangkit.capstone.lukaku.data.models.Headline
 import com.bumptech.glide.Glide
 
 class HeadlineAdapter(

@@ -3,8 +3,7 @@ package com.bangkit.capstone.lukaku.ui.container
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewTreeObserver
+import android.view.*
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -54,7 +53,7 @@ class ContainerActivity : AppCompatActivity() {
     private fun installSplashScreenWithAnim() {
         installSplashScreen().setOnExitAnimationListener { splashScreenView ->
             // Create custom animation.
-            splashScreenView.iconView.animate().rotation(180F).duration = 500L
+            splashScreenView.iconView.animate().rotation(180F).duration = 700L
             val slideUp = ObjectAnimator.ofFloat(
                 splashScreenView.iconView,
                 View.TRANSLATION_Y,
@@ -62,7 +61,7 @@ class ContainerActivity : AppCompatActivity() {
                 -splashScreenView.iconView.height.toFloat()
             )
             slideUp.interpolator = AnticipateInterpolator()
-            slideUp.duration = 500L
+            slideUp.duration = 700L
             // Call SplashScreenView.remove at the end of the custom animation.
             slideUp.doOnEnd { splashScreenView.remove() }
             // Run animation.

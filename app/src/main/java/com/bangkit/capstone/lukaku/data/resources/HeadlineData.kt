@@ -1,7 +1,7 @@
 package com.bangkit.capstone.lukaku.data.resources
 
 import com.bangkit.capstone.lukaku.R
-import com.bangkit.capstone.lukaku.models.Headline
+import com.bangkit.capstone.lukaku.data.models.Headline
 
 object HeadlineData {
 

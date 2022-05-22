@@ -1,4 +1,4 @@
-package com.bangkit.capstone.lukaku.models
+package com.bangkit.capstone.lukaku.data.models
 
 data class Headline(
     var image: Int = 0,

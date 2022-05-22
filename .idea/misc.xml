@@ -34,7 +34,15 @@
         <entry key="..\:/C22-PS188/app/src/main/res/layout/item_list_history.xml" value="0.33" />
         <entry key="..\:/C22-PS188/app/src/main/res/menu/button_nav_menu.xml" value="0.2" />
         <entry key="..\:/C22-PS188/app/src/main/res/menu/menu.xml" value="0.2" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/bg_button.xml" value="0.137" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_app_settings_alt.xml" value="0.137" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_arrow_back.xml" value="0.137" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_health.xml" value="0.137" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_illustration_sign.xml" value="0.11200000000000002" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_settings.xml" value="0.1725" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_skip_arrow.xml" value="0.137" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/bg_button.xml" value="0.1885" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/bg_search.xml" value="0.137" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_app_settings_alt.xml" value="0.1" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_arrow_back.xml" value="0.219" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_arrow_forward.xml" value="0.152" />
@@ -53,18 +61,19 @@
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_health.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_home.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_hospital.xml" value="0.1885" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_illustration_sign.xml" value="0.1885" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_illustration_sign.xml" value="0.11200000000000002" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_image_broken.xml" value="0.152" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_image_load.xml" value="0.152" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_info.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_logout.xml" value="0.1" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_mark_logo_light.xml" value="0.1885" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_mark_logo_light.xml" value="0.128" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_mark_logo_night.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_marker_logo_title.xml" value="0.152" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_photo_galery.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_profile.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_sample_avatar.xml" value="0.1885" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_setting.xml" value="0.1725" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_settings.xml" value="0.111" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_skip_arrow.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_start_detection.xml" value="0.1885" />
@@ -91,7 +100,7 @@
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_home.xml" value="0.16032608695652173" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_hospital.xml" value="0.16032608695652173" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_onboarding.xml" value="0.264" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.6" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_sign.xml" value="0.2" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_viewer.xml" value="0.264" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/item_list_article.xml" value="0.24547101449275363" />

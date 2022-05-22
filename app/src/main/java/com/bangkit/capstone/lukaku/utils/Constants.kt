@@ -4,5 +4,6 @@ object Constants {
     const val ONBOARDING_PREF = "ONBOARDING_PREF"
     const val DATASTORE_PREF = "DATASTORE_PREF"
     const val IMAGE_TYPE = "image/*"
+    const val THEME_PREF = "THEME_PREF"
     const val INTERVAL = 4000L
 }
