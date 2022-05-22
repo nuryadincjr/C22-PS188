@@ -3,11 +3,10 @@ package com.bangkit.capstone.lukaku.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.capstone.lukaku.R
+import com.bangkit.capstone.lukaku.data.models.Headline
 import com.bangkit.capstone.lukaku.databinding.ItemListHeadlineBinding
 import com.bangkit.capstone.lukaku.databinding.ItemListHeadlineBinding.inflate
-import com.bangkit.capstone.lukaku.data.models.Headline
-import com.bumptech.glide.Glide
+import com.bangkit.capstone.lukaku.utils.loadImage
 
 class HeadlineAdapter(
     private var data: List<Headline>
@@ -34,13 +33,7 @@ class HeadlineAdapter(
 
         fun bind(headline: Headline) {
             binding.apply {
-                Glide.with(itemView.context)
-                    .load(headline.image)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_image_load)
-                    .error(R.drawable.ic_image_broken)
-                    .into(ivHeadline)
-
+                ivHeadline.loadImage(headline.image)
                 tvTitle.text = headline.title
                 tvDescription.text = headline.description
             }

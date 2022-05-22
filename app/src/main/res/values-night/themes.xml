@@ -86,8 +86,9 @@
     <style name="TextDescSettings">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/lato</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:textColor">@color/white_smoke</item>
         <item name="android:gravity">center|left</item>
     </style>

@@ -10,6 +10,7 @@
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:visibility="gone"
         app:backgroundColor="?attr/colorPrimary"
         app:iconSize="24dp"
         app:iconTint="?attr/colorPrimaryVariant"
@@ -18,12 +19,14 @@
         app:indicatorRadius="8dp"
         app:itemPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_nav_menu"
         app:sideMargins="10dp"
         app:textColor="?attr/colorPrimaryVariant" />
 
     <fragment
-        android:id="@+id/main_fragment"
+        android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_main"
+        app:navGraph="@navigation/nav_graph"
         tools:ignore="FragmentTagUsage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

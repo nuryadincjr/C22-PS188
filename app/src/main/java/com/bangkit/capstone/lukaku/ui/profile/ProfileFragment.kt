@@ -1,6 +1,7 @@
 package com.bangkit.capstone.lukaku.ui.profile
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentProfileBinding
+import com.bangkit.capstone.lukaku.utils.ActivityLifeObserver
 import com.bangkit.capstone.lukaku.utils.loadCircleImage
 import com.bangkit.capstone.lukaku.utils.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -21,6 +23,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import me.ibrahimsn.lib.SmoothBottomBar
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -29,6 +32,14 @@ class ProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
     private lateinit var dialog: Dialog
+    private lateinit var bottomBar: SmoothBottomBar
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity?.lifecycle?.addObserver(ActivityLifeObserver {
+            bottomBar = requireActivity().findViewById(R.id.bottomBar)
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,12 +64,18 @@ class ProfileFragment : Fragment() {
         setProfile()
         initProgressDialog()
 
-        binding.ivSettings.setOnClickListener { showPopup(binding.ivSettings) }
+        binding.ivSettings.setOnClickListener { showPopup(it) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomBar.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        bottomBar.visibility = View.GONE
     }
 
     private fun setProfile() {
@@ -113,8 +130,8 @@ class ProfileFragment : Fragment() {
         client.signOut()
         dialog.show()
 
-        findNavController().navigate(R.id.action_navigation_profile_to_containerActivity)
-        requireActivity().finish()
+        findNavController().navigate(R.id.action_navigation_profile_to_signFragment)
+        dialog.hide()
     }
 
     private fun initProgressDialog() {

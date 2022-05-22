@@ -9,7 +9,6 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
@@ -27,6 +26,7 @@ import com.google.firebase.ktx.Firebase
 class SignFragment : Fragment() {
     private var _binding: FragmentSignBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
     private lateinit var dialog: Dialog
@@ -57,22 +57,19 @@ class SignFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        client = GoogleSignIn.getClient(requireActivity(), gso)
 
         // Init Firebase Auth
         auth = Firebase.auth
+        client = GoogleSignIn.getClient(requireActivity(), gso)
 
         initProgressDialog()
 
-        binding.btnSignIn.setOnClickListener {
-            signIn()
-        }
+        binding.btnSignIn.setOnClickListener { signIn() }
     }
 
     override fun onDestroyView() {
@@ -92,16 +89,12 @@ class SignFragment : Fragment() {
                 // Get LoggedIn User
                 val user = auth.currentUser
                 // Check if user is new or existing
-                if (task.additionalUserInfo!!.isNewUser) {
-                    requireActivity().toast(getString(R.string.account_created_success_message))
+                val message = if (task.additionalUserInfo!!.isNewUser) {
+                    getString(R.string.account_created_success_message)
                 } else {
-                    requireActivity().toast(
-                        getString(
-                            R.string.sign_in_welcome_message,
-                            user?.displayName
-                        )
-                    )
+                    getString(R.string.sign_in_welcome_message, user?.displayName)
                 }
+                requireActivity().toast(message)
                 moveToMainActivity()
             }
             .addOnFailureListener {
@@ -112,9 +105,8 @@ class SignFragment : Fragment() {
     }
 
     private fun moveToMainActivity() {
-        findNavController().navigate(R.id.action_signFragment_to_mainActivity)
+        findNavController().navigate(R.id.action_signFragment_to_navigation_home)
         dialog.dismiss()
-        requireActivity().finish()
     }
 
     private fun initProgressDialog() {

@@ -18,8 +18,9 @@
             android:id="@+id/ivBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="@string/back" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_arrow_back" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSettings"
@@ -45,35 +46,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainToolbar" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvDarkMode"
-        style="@style/TextDescSettings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/dark_mode"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTheme" />
-
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/swTheme"
+        style="@style/TextDescSettings"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvDarkMode"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/dark_mode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvDarkMode"
-        app:layout_constraintTop_toTopOf="@id/tvDarkMode" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTheme" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/div1"
         style="@style/DivStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDarkMode" />
+        app:layout_constraintTop_toBottomOf="@+id/swTheme" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvCommon"
@@ -91,7 +82,7 @@
         android:id="@+id/tvChangeLanguage"
         style="@style/TextDescSettings"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:text="@string/change_language"
@@ -105,7 +96,6 @@
         style="@style/DivStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvChangeLanguage" />

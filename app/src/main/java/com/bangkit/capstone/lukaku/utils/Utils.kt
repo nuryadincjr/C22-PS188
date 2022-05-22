@@ -45,7 +45,17 @@ fun ImageView.loadCircleImage(imageSource: Uri?) {
     Glide.with(this)
         .load(imageSource)
         .centerCrop()
+        .circleCrop()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.ic_image_load)
+        .error(R.drawable.ic_image_broken)
+        .into(this)
+}
+
+fun <T> ImageView.loadImage(image: T) {
+    Glide.with(this)
+        .load(image)
+        .centerCrop()
         .placeholder(R.drawable.ic_image_load)
         .error(R.drawable.ic_image_broken)
         .into(this)
