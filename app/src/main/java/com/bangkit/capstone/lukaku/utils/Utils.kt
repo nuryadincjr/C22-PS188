@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Environment
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.navigation.NavController
 import com.bangkit.capstone.lukaku.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -46,7 +45,17 @@ fun ImageView.loadCircleImage(imageSource: Uri?) {
     Glide.with(this)
         .load(imageSource)
         .centerCrop()
+        .circleCrop()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.ic_image_load)
+        .error(R.drawable.ic_image_broken)
+        .into(this)
+}
+
+fun <T> ImageView.loadImage(image: T) {
+    Glide.with(this)
+        .load(image)
+        .centerCrop()
         .placeholder(R.drawable.ic_image_load)
         .error(R.drawable.ic_image_broken)
         .into(this)
@@ -68,15 +77,4 @@ fun uriToFile(uri: Uri, context: Context): File {
     inputStream.close()
 
     return imageFile
-}
-
-fun NavController.popBackStackAllInstances(destination: Int, inclusive: Boolean): Boolean {
-    var popped: Boolean
-    while (true) {
-        popped = popBackStack(destination, inclusive)
-        if (!popped) {
-            break
-        }
-    }
-    return popped
 }

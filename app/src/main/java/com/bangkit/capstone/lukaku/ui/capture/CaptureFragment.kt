@@ -10,7 +10,6 @@ import android.util.DisplayMetrics
 import android.view.*
 import android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
@@ -27,6 +26,7 @@ import com.bangkit.capstone.lukaku.databinding.FragmentCaptureBinding
 import com.bangkit.capstone.lukaku.ui.capture.CaptureFragmentDirections.actionCaptureFragmentToViewerFragment
 import com.bangkit.capstone.lukaku.utils.Constants.IMAGE_TYPE
 import com.bangkit.capstone.lukaku.utils.createFile
+import com.bangkit.capstone.lukaku.utils.toast
 import com.bangkit.capstone.lukaku.utils.uriToFile
 import me.ibrahimsn.lib.SmoothBottomBar
 import java.io.File
@@ -126,12 +126,10 @@ class CaptureFragment : Fragment(), View.OnClickListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    context,
-                    getString(R.string.error_camera_permission),
-                    Toast.LENGTH_SHORT
-                ).show()
-                requireActivity().finish()
+                requireActivity().apply {
+                    toast(getString(R.string.error_camera_permission))
+                    finish()
+                }
             }
         }
     }
@@ -234,11 +232,7 @@ class CaptureFragment : Fragment(), View.OnClickListener {
                     }
 
                 } catch (exc: Exception) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.error_camera_start),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireActivity().toast(getString(R.string.error_camera_start))
                 }
             }
         }, ContextCompat.getMainExecutor(requireContext()))
@@ -293,11 +287,7 @@ class CaptureFragment : Fragment(), View.OnClickListener {
             ContextCompat.getMainExecutor(requireContext()),
             object : OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.error_camera_take),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireActivity().toast(getString(R.string.error_camera_take))
                 }
 
                 override fun onImageSaved(output: OutputFileResults) = onNavigate(imageFile)
