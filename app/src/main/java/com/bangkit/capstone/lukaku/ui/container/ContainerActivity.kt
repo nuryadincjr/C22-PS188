@@ -7,14 +7,18 @@ import android.view.*
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ContainerActivity : AppCompatActivity() {
@@ -25,6 +29,15 @@ class ContainerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
         installSplashScreenWithAnim().apply {
+            lifecycleScope.launch {
+                viewModel.getThemeSetting().collect { isDarkModeActive ->
+                    if (isDarkModeActive == true) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
+                }
+            }
             setupPreDrawListener()
             checkUser()
         }
