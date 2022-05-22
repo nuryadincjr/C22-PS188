@@ -2,6 +2,7 @@ package com.bangkit.capstone.lukaku.ui.capture
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -24,6 +25,7 @@ import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentCaptureBinding
 import com.bangkit.capstone.lukaku.ui.capture.CaptureFragmentDirections.actionCaptureFragmentToViewerFragment
+import com.bangkit.capstone.lukaku.utils.ActivityLifeObserver
 import com.bangkit.capstone.lukaku.utils.Constants.IMAGE_TYPE
 import com.bangkit.capstone.lukaku.utils.createFile
 import com.bangkit.capstone.lukaku.utils.toast
@@ -60,6 +62,13 @@ class CaptureFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity?.lifecycle?.addObserver(ActivityLifeObserver {
+            bottomBar = requireActivity().findViewById(R.id.bottomBar)
+        })
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,9 +80,6 @@ class CaptureFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        bottomBar = requireActivity().findViewById(R.id.bottomBar)
-        bottomBar.visibility = View.GONE
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -94,17 +100,19 @@ class CaptureFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        bottomBar.visibility = View.GONE
+
+        setAnimation()
+        startCamera()
+        zoomCamera()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         cameraExecutor.shutdown()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setAnimation()
-        startCamera()
-        zoomCamera()
     }
 
     override fun onClick(p0: View) {

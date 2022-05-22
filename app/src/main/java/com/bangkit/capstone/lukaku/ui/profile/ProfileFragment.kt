@@ -1,6 +1,7 @@
 package com.bangkit.capstone.lukaku.ui.profile
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +9,12 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentProfileBinding
+import com.bangkit.capstone.lukaku.utils.ActivityLifeObserver
 import com.bangkit.capstone.lukaku.utils.loadCircleImage
-import com.bangkit.capstone.lukaku.utils.popBackStackAllInstances
 import com.bangkit.capstone.lukaku.utils.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -34,6 +34,13 @@ class ProfileFragment : Fragment() {
     private lateinit var dialog: Dialog
     private lateinit var bottomBar: SmoothBottomBar
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity?.lifecycle?.addObserver(ActivityLifeObserver {
+            bottomBar = requireActivity().findViewById(R.id.bottomBar)
+        })
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,9 +52,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        bottomBar = requireActivity().findViewById(R.id.bottomBar)
-        bottomBar.visibility = View.VISIBLE
 
         val gso = Builder(DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -61,6 +65,11 @@ class ProfileFragment : Fragment() {
         initProgressDialog()
 
         binding.ivSettings.setOnClickListener { showPopup(binding.ivSettings) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomBar.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

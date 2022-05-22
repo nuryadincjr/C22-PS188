@@ -18,10 +18,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58a2ded-abbb-4a44-b023-88478d0f4cad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/utils/ActivityLifeObserver.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/adapters/HeadlineAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/adapters/HeadlineAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/appsettings/AppSettingsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/appsettings/AppSettingsFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/capture/CaptureFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/capture/CaptureFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/utils/Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/utils/Utils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/home/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/hospital/HospitalFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/hospital/HospitalFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/profile/ProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/profile/ProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/sign/SignFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bangkit/capstone/lukaku/ui/sign/SignFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,9 +76,9 @@
         <option value="resourceFile" />
         <option value="navigationResourceFile" />
         <option value="valueResourceFile" />
-        <option value="Kotlin Class" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -285,7 +289,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="fitur2" />
+                        <option value="android-fitur2" />
                       </list>
                     </value>
                   </entry>

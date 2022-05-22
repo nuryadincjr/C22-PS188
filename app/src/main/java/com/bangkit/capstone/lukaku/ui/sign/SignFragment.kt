@@ -2,6 +2,7 @@ package com.bangkit.capstone.lukaku.ui.sign
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.databinding.FragmentSignBinding
+import com.bangkit.capstone.lukaku.utils.ActivityLifeObserver
 import com.bangkit.capstone.lukaku.utils.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -48,11 +50,11 @@ class SignFragment : Fragment() {
             }
         }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        bottomBar = requireActivity().findViewById(R.id.bottomBar)
-        bottomBar.visibility = GONE
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity?.lifecycle?.addObserver(ActivityLifeObserver {
+            bottomBar = requireActivity().findViewById(R.id.bottomBar)
+        })
     }
 
     override fun onCreateView(
@@ -79,6 +81,11 @@ class SignFragment : Fragment() {
         initProgressDialog()
 
         binding.btnSignIn.setOnClickListener { signIn() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomBar.visibility = GONE
     }
 
     override fun onDestroyView() {
