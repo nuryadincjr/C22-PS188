@@ -114,13 +114,25 @@
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/menu/popup_menu_profile.xml" value="0.25" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1885" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_marker_logo_title.xml" value="0.1485" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_notifications_none.xml" value="0.168" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/bg_search.xml" value="0.1695" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/ic_group_112.xml" value="0.1485" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/ic_marker_logo_title.xml" value="0.1485" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/ic_notifications_none.xml" value="0.168" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/ic_search.xml" value="0.1695" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/layer_indicator_tab_default.xml" value="0.168" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/layer_indicator_tab_selected.xml" value="0.168" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/drawable/selector_indicator_tab.xml" value="0.168" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_app_settings.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_articles.xml" value="0.2" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_notification.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_notifs.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/fragment_viewer.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/item_list_article.xml" value="0.75" />
+        <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/item_list_headline.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/layout/item_list_history.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/educa/Downloads/C22-PS188/app/src/main/res/menu/articles_menu.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/nurya/AndroidStudioProjects/LukaKu/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2075" />

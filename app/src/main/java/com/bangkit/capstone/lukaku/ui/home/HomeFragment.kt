@@ -53,6 +53,8 @@ class HomeFragment : Fragment() {
         setProfile()
         onStartHeadline()
         goToViewMore()
+        goToNotifications()
+        goToProfile()
     }
 
     override fun onResume() {
@@ -94,6 +96,18 @@ class HomeFragment : Fragment() {
     private fun goToViewMore() {
         binding.btnViewMore.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_articlesFragment)
+        }
+    }
+
+    private fun goToNotifications() {
+        binding.ivNotifications.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_notificationFragment)
+        }
+    }
+
+    private fun goToProfile() {
+        binding.ivProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_profile)
         }
     }
 }

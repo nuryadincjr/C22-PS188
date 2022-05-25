@@ -105,11 +105,25 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_articlesFragment"
-            app:destination="@id/articlesFragment" />
+            app:destination="@id/articlesFragment"
+            app:popUpTo="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_home_to_notificationFragment"
+            app:destination="@id/notificationFragment"
+            app:popUpTo="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/articlesFragment"
         android:name="com.bangkit.capstone.lukaku.ui.article.ArticlesFragment"
         android:label="fragment_articles"
         tools:layout="@layout/fragment_articles" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.bangkit.capstone.lukaku.ui.notifications.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>
