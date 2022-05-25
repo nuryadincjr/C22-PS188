@@ -16,6 +16,10 @@ import com.bangkit.capstone.lukaku.utils.Constants.INTERVAL
 import com.bangkit.capstone.lukaku.utils.ViewPager.autoScroll
 import com.bangkit.capstone.lukaku.utils.ViewPager.mediator
 import com.bangkit.capstone.lukaku.utils.ViewPager.transformer
+import com.bangkit.capstone.lukaku.utils.loadCircleImage
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import me.ibrahimsn.lib.SmoothBottomBar
 
 class HomeFragment : Fragment() {
@@ -23,6 +27,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var bottomBar: SmoothBottomBar
+    private lateinit var auth: FirebaseAuth
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,6 +47,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = Firebase.auth
+
+        setProfile()
         onStartHeadline()
     }
 
@@ -54,6 +62,14 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         bottomBar.visibility = View.GONE
+    }
+
+    private fun setProfile() {
+        val user = auth.currentUser
+        binding.apply {
+            ivProfile.loadCircleImage(user?.photoUrl)
+            tvName.text = getString(R.string.name_display, user?.displayName)
+        }
     }
 
     private fun onStartHeadline() {

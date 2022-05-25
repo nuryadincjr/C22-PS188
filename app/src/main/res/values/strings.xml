@@ -59,4 +59,6 @@
     <string name="articles">Articles</string>
     <string name="back">Back</string>
     <string name="please_wait">Please Wait…</string>
+    <string name="name_display">Hi, %s</string>
+    <string name="wound_desc">Let’s get to know your wound more!</string>
 </resources>

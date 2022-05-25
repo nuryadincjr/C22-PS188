@@ -42,6 +42,7 @@
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_settings.xml" value="0.1725" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable-night/ic_skip_arrow.xml" value="0.137" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/bg_button.xml" value="0.1885" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/bg_content.xml" value="0.536" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/bg_search.xml" value="0.137" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_app_settings_alt.xml" value="0.1" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_arrow_back.xml" value="0.219" />
@@ -70,6 +71,7 @@
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_mark_logo_light.xml" value="0.128" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_mark_logo_night.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_marker_logo_title.xml" value="0.152" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_notifications_none.xml" value="0.11" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_photo_galery.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_profile.xml" value="0.1885" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/drawable/ic_sample_avatar.xml" value="0.1885" />
@@ -96,14 +98,15 @@
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/activity_on_boarding.xml" value="0.264" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/dialog_loading.xml" value="0.152" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_app_settings.xml" value="0.264" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_articles.xml" value="0.2" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_capture.xml" value="0.24547101449275363" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_home.xml" value="0.16032608695652173" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_hospital.xml" value="0.16032608695652173" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_onboarding.xml" value="0.264" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.6" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_onboarding.xml" value="0.1" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_profile.xml" value="0.27812113720642767" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_sign.xml" value="0.2" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/fragment_viewer.xml" value="0.264" />
-        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/item_list_article.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/item_list_article.xml" value="0.264" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/item_list_headline.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/layout/item_list_history.xml" value="0.2" />
         <entry key="..\:/Users/chels/Downloads/C22-PS188/app/src/main/res/menu/button_nav_menu.xml" value="0.18020833333333333" />
