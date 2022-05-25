@@ -61,4 +61,6 @@
     <string name="please_wait">Please Wait…</string>
     <string name="name_display">Hi, %s</string>
     <string name="wound_desc">Let’s get to know your wound more!</string>
+    <string name="view_more">View More</string>
+    <string name="notifications">Notifications</string>
 </resources>
