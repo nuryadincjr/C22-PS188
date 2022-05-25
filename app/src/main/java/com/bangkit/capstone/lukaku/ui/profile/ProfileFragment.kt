@@ -1,6 +1,5 @@
 package com.bangkit.capstone.lukaku.ui.profile
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -31,7 +30,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
-    private lateinit var dialog: Dialog
     private lateinit var bottomBar: SmoothBottomBar
 
     override fun onAttach(context: Context) {
@@ -62,7 +60,6 @@ class ProfileFragment : Fragment() {
         client = GoogleSignIn.getClient(requireActivity(), gso)
 
         setProfile()
-        initProgressDialog()
 
         binding.ivSettings.setOnClickListener { showPopup(it) }
     }
@@ -128,16 +125,7 @@ class ProfileFragment : Fragment() {
     private fun signOut() {
         auth.signOut()
         client.signOut()
-        dialog.show()
 
         findNavController().navigate(R.id.action_navigation_profile_to_signFragment)
-        dialog.hide()
-    }
-
-    private fun initProgressDialog() {
-        dialog = Dialog(requireActivity()).apply {
-            setContentView(R.layout.dialog_loading)
-            setCancelable(false)
-        }
     }
 }

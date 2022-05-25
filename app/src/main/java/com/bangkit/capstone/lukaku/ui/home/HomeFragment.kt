@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bangkit.capstone.lukaku.R
 import com.bangkit.capstone.lukaku.adapters.HeadlineAdapter
 import com.bangkit.capstone.lukaku.data.resources.HeadlineData
@@ -51,6 +52,7 @@ class HomeFragment : Fragment() {
 
         setProfile()
         onStartHeadline()
+        goToViewMore()
     }
 
     override fun onResume() {
@@ -86,6 +88,12 @@ class HomeFragment : Fragment() {
             transformer()
             autoScroll(viewLifecycleOwner.lifecycleScope, INTERVAL)
             mediator(binding.tabLayout, title)
+        }
+    }
+
+    private fun goToViewMore() {
+        binding.btnViewMore.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_articlesFragment)
         }
     }
 }
